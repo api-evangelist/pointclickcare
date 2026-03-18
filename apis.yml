@@ -1,18 +1,63 @@
 aid: pointclickcare
 url: https://raw.githubusercontent.com/api-evangelist/pointclickcare/refs/heads/main/apis.yml
 apis:
-- aid: pointclickcare:pointclickcare-api
+- aid: pointclickcare:pointclickcare-ehr-api
   name: PointClickCare Long-Term Care EHR API
   tags:
   - Healthcare
   - Long-Term Care
   - EHR
   - Senior Care
+  - REST
   image: https://raw.githubusercontent.com/api-evangelist/pointclickcare/refs/heads/main/image.png
-  humanURL: https://www.pointclickcare.com/
-  baseURL: https://api.pointclickcare.example.com
+  humanURL: https://developer.pointclickcare.com/spa
+  baseURL: https://api.pointclickcare.com
   properties:
-  - url: https://www.pointclickcare.com/
+  - url: https://developer.pointclickcare.com/spa
     type: Documentation
+  - url: https://developer.pointclickcare.com/spa
+    type: Portal
   description: >-
     PointClickCare provides EHR and care coordination APIs for long-term and post-acute care facilities. APIs enable access to resident records, medication administration, clinical assessments, and care plan data for skilled nursing facilities and senior living communities.
+
+- aid: pointclickcare:pointclickcare-fhir-api
+  name: PointClickCare FHIR API
+  tags:
+  - Healthcare
+  - Long-Term Care
+  - FHIR
+  - HL7
+  - Interoperability
+  - REST
+  image: https://raw.githubusercontent.com/api-evangelist/pointclickcare/refs/heads/main/image.png
+  humanURL: https://developer.pointclickcare.com/spa
+  baseURL: https://api.pointclickcare.com
+  properties:
+  - url: https://developer.pointclickcare.com/spa
+    type: Documentation
+  description: >-
+    PointClickCare FHIR API provides HL7 FHIR-compliant access to resident clinical data for post-acute and long-term care settings, supporting interoperability with other healthcare systems and care coordination platforms.
+
+common:
+- url: https://developer.pointclickcare.com/spa
+  type: Portal
+- url: https://developer.pointclickcare.com/spa
+  type: Documentation
+- url: https://www.pointclickcare.com/
+  type: Website
+- url: https://pointclickcare.com/customer-support/
+  type: Support
+- url: https://pointclickcare.com/blog/
+  type: Blog
+- url: https://pointclickcare.com/privacy-policy/
+  type: PrivacyPolicy
+- url: https://pointclickcare.com/legal/terms-conditions/
+  type: TermsOfService
+- url: https://status.pointclickcare.com/
+  type: Status
+- url: https://github.com/PointClickCare
+  type: GitHubOrganization
+maintainers:
+- name: Kin Lane
+  email: kin@apievangelist.com
+modified: '2026-03-18'
