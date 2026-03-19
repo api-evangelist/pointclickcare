@@ -1,0 +1,699 @@
+openapi: 3.1.0
+info:
+  title: PointClickCare Long-Term Care EHR API
+  description: >-
+    PointClickCare provides EHR and care coordination APIs for long-term and
+    post-acute care (LTPAC) facilities. APIs enable access to resident records,
+    medication administration records, clinical assessments, care plans, and
+    facility data for skilled nursing facilities (SNFs) and senior living communities.
+  version: 2.0.0
+  contact:
+    name: PointClickCare Developer Support
+    url: https://developer.pointclickcare.com/spa
+  license:
+    name: PointClickCare Terms of Service
+    url: https://pointclickcare.com/legal/terms-conditions/
+servers:
+  - url: https://api.pointclickcare.com/v2
+    description: PointClickCare API
+
+security:
+  - oauth2: []
+
+tags:
+  - name: Patients
+    description: Resident/patient demographics and admission data
+  - name: Medications
+    description: Medication orders and administration records (MAR)
+  - name: Assessments
+    description: Clinical assessments (MDS, fall risk, etc.)
+  - name: CarePlans
+    description: Care plan management
+  - name: Facilities
+    description: Facility and unit management
+  - name: Vitals
+    description: Vital signs records
+  - name: Diagnoses
+    description: Diagnosis and condition records
+
+paths:
+  /patients:
+    get:
+      operationId: listPatients
+      summary: List residents/patients
+      description: Returns a list of residents/patients at the specified facility.
+      tags:
+        - Patients
+      parameters:
+        - name: facilityId
+          in: query
+          required: true
+          description: Facility identifier
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter by admission status
+          schema:
+            type: string
+            enum: [ACTIVE, DISCHARGED, DECEASED, RESPITE, LOA]
+        - name: unitId
+          in: query
+          description: Filter by unit/floor
+          schema:
+            type: string
+        - name: updatedSince
+          in: query
+          description: Return only records updated after this timestamp
+          schema:
+            type: string
+            format: date-time
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
+      responses:
+        '200':
+          description: Patient list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Patient'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /patients/{patientId}:
+    get:
+      operationId: getPatient
+      summary: Get a resident/patient
+      description: Returns demographic and admission details for a single resident.
+      tags:
+        - Patients
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+      responses:
+        '200':
+          description: Patient details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /patients/{patientId}/vitals:
+    get:
+      operationId: getPatientVitals
+      summary: Get patient vitals
+      description: Returns vital sign measurements for a resident within a date range.
+      tags:
+        - Vitals
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: vitalType
+          in: query
+          description: Filter by vital type
+          schema:
+            type: string
+            enum: [BLOOD_PRESSURE, HEART_RATE, TEMPERATURE, WEIGHT, OXYGEN_SATURATION, RESPIRATION_RATE, BLOOD_GLUCOSE]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: Vital sign records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VitalSign'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /patients/{patientId}/medications:
+    get:
+      operationId: getPatientMedications
+      summary: Get patient medication orders
+      description: Returns active and historical medication orders for a resident.
+      tags:
+        - Medications
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum: [ACTIVE, DISCONTINUED, COMPLETED, ON_HOLD]
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Medication orders
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MedicationOrder'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /patients/{patientId}/medications/mar:
+    get:
+      operationId: getPatientMAR
+      summary: Get medication administration records
+      description: Returns medication administration records (MAR) documenting when medications were given.
+      tags:
+        - Medications
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: MAR records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MARRecord'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /patients/{patientId}/assessments:
+    get:
+      operationId: listPatientAssessments
+      summary: List patient assessments
+      description: Returns clinical assessments (MDS, fall risk, skin assessment, etc.) for a resident.
+      tags:
+        - Assessments
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: type
+          in: query
+          description: Filter by assessment type
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Assessment list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Assessment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /patients/{patientId}/diagnoses:
+    get:
+      operationId: getPatientDiagnoses
+      summary: Get patient diagnoses
+      description: Returns ICD-coded diagnoses and active conditions for a resident.
+      tags:
+        - Diagnoses
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [ACTIVE, INACTIVE, ALL]
+            default: ACTIVE
+      responses:
+        '200':
+          description: Diagnosis records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Diagnosis'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /facilities:
+    get:
+      operationId: listFacilities
+      summary: List facilities
+      description: Returns facilities accessible to the authenticated application.
+      tags:
+        - Facilities
+      responses:
+        '200':
+          description: Facility list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Facility'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authorization code flow via PointClickCare identity server
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.pointclickcare.com/oauth2/authorize
+          tokenUrl: https://login.pointclickcare.com/oauth2/token
+          scopes:
+            patient.read: Read patient demographics
+            clinical.read: Read clinical data (vitals, medications, assessments)
+            facility.read: Read facility information
+
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
+
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient permissions for this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Patient:
+      type: object
+      description: A resident/patient demographic summary
+      properties:
+        patientId:
+          type: string
+          description: PointClickCare patient identifier
+        facilityId:
+          type: string
+        mrn:
+          type: string
+          description: Medical record number
+        firstName:
+          type: string
+        lastName:
+          type: string
+        middleName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum: [M, F, U]
+        status:
+          type: string
+          enum: [ACTIVE, DISCHARGED, DECEASED, RESPITE, LOA]
+        admissionDate:
+          type: string
+          format: date
+        dischargeDate:
+          type: string
+          format: date
+          nullable: true
+        unitId:
+          type: string
+        roomNumber:
+          type: string
+        bedNumber:
+          type: string
+        payerType:
+          type: string
+          enum: [MEDICARE, MEDICAID, PRIVATE_PAY, INSURANCE, VA]
+        lastUpdateDatetime:
+          type: string
+          format: date-time
+
+    PatientDetail:
+      allOf:
+        - $ref: '#/components/schemas/Patient'
+        - type: object
+          properties:
+            ssn:
+              type: string
+              description: Last 4 digits only
+            primaryPhysician:
+              type: object
+              properties:
+                npi:
+                  type: string
+                name:
+                  type: string
+            emergencyContact:
+              type: object
+              properties:
+                name:
+                  type: string
+                relationship:
+                  type: string
+                phone:
+                  type: string
+            allergies:
+              type: array
+              items:
+                type: string
+            advanceDirective:
+              type: string
+              enum: [FULL_CODE, DNR, DNI, COMFORT_CARE, UNKNOWN]
+            language:
+              type: string
+
+    VitalSign:
+      type: object
+      description: A vital sign measurement
+      properties:
+        vitalId:
+          type: string
+        patientId:
+          type: string
+        vitalType:
+          type: string
+          enum: [BLOOD_PRESSURE, HEART_RATE, TEMPERATURE, WEIGHT, OXYGEN_SATURATION, RESPIRATION_RATE, BLOOD_GLUCOSE]
+        recordedDatetime:
+          type: string
+          format: date-time
+        systolic:
+          type: integer
+          description: Systolic blood pressure (mmHg)
+          nullable: true
+        diastolic:
+          type: integer
+          description: Diastolic blood pressure (mmHg)
+          nullable: true
+        heartRate:
+          type: integer
+          nullable: true
+        temperature:
+          type: number
+          format: double
+          nullable: true
+        temperatureUnit:
+          type: string
+          enum: [F, C]
+          nullable: true
+        weight:
+          type: number
+          format: double
+          nullable: true
+        weightUnit:
+          type: string
+          enum: [LBS, KG]
+          nullable: true
+        oxygenSaturation:
+          type: number
+          format: double
+          nullable: true
+        respirationRate:
+          type: integer
+          nullable: true
+        bloodGlucose:
+          type: number
+          format: double
+          nullable: true
+        bloodGlucoseUnit:
+          type: string
+          enum: [MG_DL, MMOL_L]
+          nullable: true
+        recordedBy:
+          type: string
+          description: Staff member who recorded the vital
+
+    MedicationOrder:
+      type: object
+      description: A medication order
+      properties:
+        orderId:
+          type: string
+        patientId:
+          type: string
+        medicationName:
+          type: string
+        genericName:
+          type: string
+        ndc:
+          type: string
+          description: National Drug Code
+        dose:
+          type: string
+          description: Dosage amount and unit (e.g., "500 mg")
+        route:
+          type: string
+          enum: [ORAL, IV, IM, SC, TOPICAL, SUBLINGUAL, INHALED, RECTAL, OTHER]
+        frequency:
+          type: string
+          description: Administration frequency (e.g., "BID", "QHS", "PRN")
+        status:
+          type: string
+          enum: [ACTIVE, DISCONTINUED, COMPLETED, ON_HOLD]
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+          nullable: true
+        orderingPhysicianNpi:
+          type: string
+        orderDatetime:
+          type: string
+          format: date-time
+        indication:
+          type: string
+
+    MARRecord:
+      type: object
+      description: A medication administration record entry
+      properties:
+        marId:
+          type: string
+        orderId:
+          type: string
+        patientId:
+          type: string
+        scheduledDatetime:
+          type: string
+          format: date-time
+        administeredDatetime:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          enum: [GIVEN, NOT_GIVEN, REFUSED, HELD, PRN_GIVEN]
+        doseAdministered:
+          type: string
+          nullable: true
+        notGivenReason:
+          type: string
+          nullable: true
+        administeredBy:
+          type: string
+          description: Staff member NPI or ID
+        notes:
+          type: string
+          nullable: true
+
+    Assessment:
+      type: object
+      description: A clinical assessment record
+      properties:
+        assessmentId:
+          type: string
+        patientId:
+          type: string
+        assessmentType:
+          type: string
+          description: Type code (e.g., MDS-3.0-ADMISSION, FALL-RISK, BRADEN-SKIN)
+        assessmentDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [DRAFT, COMPLETE, LOCKED, TRANSMITTED]
+        completedBy:
+          type: string
+        score:
+          type: number
+          format: double
+          nullable: true
+          description: Numeric score if applicable
+        riskLevel:
+          type: string
+          nullable: true
+          description: Risk classification if applicable
+
+    Diagnosis:
+      type: object
+      description: A patient diagnosis or condition
+      properties:
+        diagnosisId:
+          type: string
+        patientId:
+          type: string
+        icdCode:
+          type: string
+          description: ICD-10-CM code (e.g., I10, E11.9)
+        icdCodeSet:
+          type: string
+          enum: [ICD-10-CM, ICD-9-CM]
+          default: ICD-10-CM
+        description:
+          type: string
+        diagnosisType:
+          type: string
+          enum: [PRIMARY, SECONDARY, COMORBIDITY, COMPLICATION]
+        status:
+          type: string
+          enum: [ACTIVE, INACTIVE, RESOLVED]
+        onsetDate:
+          type: string
+          format: date
+          nullable: true
+        resolutionDate:
+          type: string
+          format: date
+          nullable: true
+
+    Facility:
+      type: object
+      properties:
+        facilityId:
+          type: string
+        name:
+          type: string
+        npi:
+          type: string
+        medicareProviderNumber:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+          maxLength: 2
+        zip:
+          type: string
+        phone:
+          type: string
+        facilityType:
+          type: string
+          enum: [SNF, ALF, ICF, CCRC, HOME_HEALTH, HOSPICE]
+
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalCount:
+          type: integer
+        hasMore:
+          type: boolean
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string

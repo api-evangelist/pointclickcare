@@ -1,0 +1,128 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "fhir": "http://hl7.org/fhir/",
+    "pcc": "https://developer.pointclickcare.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Patient": {
+      "@id": "fhir:Patient",
+      "@type": "@id"
+    },
+    "patientId": {
+      "@id": "schema:identifier"
+    },
+    "mrn": {
+      "@id": "fhir:Patient.identifier"
+    },
+    "firstName": {
+      "@id": "schema:givenName"
+    },
+    "lastName": {
+      "@id": "schema:familyName"
+    },
+    "dateOfBirth": {
+      "@id": "schema:birthDate",
+      "@type": "xsd:date"
+    },
+    "gender": {
+      "@id": "schema:gender"
+    },
+    "admissionDate": {
+      "@id": "fhir:Encounter.period.start",
+      "@type": "xsd:date"
+    },
+    "dischargeDate": {
+      "@id": "fhir:Encounter.period.end",
+      "@type": "xsd:date"
+    },
+    "language": {
+      "@id": "schema:knowsLanguage"
+    },
+    "allergies": {
+      "@id": "fhir:AllergyIntolerance"
+    },
+
+    "VitalSign": {
+      "@id": "fhir:Observation",
+      "@type": "@id"
+    },
+    "vitalType": {
+      "@id": "fhir:Observation.code"
+    },
+    "recordedDatetime": {
+      "@id": "fhir:Observation.effectiveDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "systolic": {
+      "@id": "fhir:Observation.component.valueSampledData",
+      "@type": "xsd:integer"
+    },
+    "heartRate": {
+      "@id": "pcc:heartRate",
+      "@type": "xsd:integer"
+    },
+    "temperature": {
+      "@id": "pcc:bodyTemperature",
+      "@type": "xsd:decimal"
+    },
+    "weight": {
+      "@id": "schema:weight",
+      "@type": "xsd:decimal"
+    },
+    "oxygenSaturation": {
+      "@id": "pcc:oxygenSaturation",
+      "@type": "xsd:decimal"
+    },
+
+    "MedicationOrder": {
+      "@id": "fhir:MedicationRequest",
+      "@type": "@id"
+    },
+    "medicationName": {
+      "@id": "schema:name"
+    },
+    "ndc": {
+      "@id": "fhir:Medication.code"
+    },
+    "dose": {
+      "@id": "fhir:MedicationRequest.dosageInstruction.doseAndRate"
+    },
+    "route": {
+      "@id": "fhir:MedicationRequest.dosageInstruction.route"
+    },
+    "frequency": {
+      "@id": "fhir:MedicationRequest.dosageInstruction.timing"
+    },
+
+    "Diagnosis": {
+      "@id": "fhir:Condition",
+      "@type": "@id"
+    },
+    "icdCode": {
+      "@id": "fhir:Condition.code"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "onsetDate": {
+      "@id": "fhir:Condition.onsetDateTime",
+      "@type": "xsd:date"
+    },
+
+    "Facility": {
+      "@id": "schema:MedicalOrganization",
+      "@type": "@id"
+    },
+    "facilityId": {
+      "@id": "schema:identifier"
+    },
+    "npi": {
+      "@id": "pcc:npi"
+    },
+    "facilityType": {
+      "@id": "schema:medicalSpecialty"
+    }
+  }
+}

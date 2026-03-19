@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/pointclickcare/json-schema/pointclickcare-patient-schema.json",
+  "title": "PointClickCare Patient",
+  "description": "Schema for a PointClickCare long-term care resident/patient record with demographic and admission data.",
+  "type": "object",
+  "properties": {
+    "patientId": {
+      "type": "string",
+      "description": "PointClickCare system-generated patient identifier"
+    },
+    "facilityId": {
+      "type": "string",
+      "description": "Facility where the patient resides"
+    },
+    "mrn": {
+      "type": "string",
+      "description": "Medical record number"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "middleName": {
+      "type": "string"
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "format": "date"
+    },
+    "gender": {
+      "type": "string",
+      "enum": ["M", "F", "U"],
+      "description": "M=Male, F=Female, U=Unknown/Not specified"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "DISCHARGED", "DECEASED", "RESPITE", "LOA"],
+      "description": "Current admission status"
+    },
+    "admissionDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of most recent admission"
+    },
+    "dischargeDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Discharge date if applicable"
+    },
+    "unitId": {
+      "type": "string",
+      "description": "Unit or wing identifier"
+    },
+    "roomNumber": {
+      "type": "string"
+    },
+    "bedNumber": {
+      "type": "string"
+    },
+    "payerType": {
+      "type": "string",
+      "enum": ["MEDICARE", "MEDICAID", "PRIVATE_PAY", "INSURANCE", "VA"],
+      "description": "Primary payer type"
+    },
+    "advanceDirective": {
+      "type": "string",
+      "enum": ["FULL_CODE", "DNR", "DNI", "COMFORT_CARE", "UNKNOWN"],
+      "description": "Advance directive status"
+    },
+    "language": {
+      "type": "string",
+      "description": "Preferred language (BCP 47 language tag)"
+    },
+    "allergies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Known allergies"
+    },
+    "primaryPhysician": {
+      "type": "object",
+      "properties": {
+        "npi": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "lastUpdateDatetime": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["patientId", "facilityId", "firstName", "lastName", "dateOfBirth", "status", "admissionDate"],
+  "examples": [
+    {
+      "patientId": "PCC-FAC001-12345",
+      "facilityId": "FAC001",
+      "mrn": "MRN-98765",
+      "firstName": "Margaret",
+      "lastName": "Johnson",
+      "dateOfBirth": "1938-05-12",
+      "gender": "F",
+      "status": "ACTIVE",
+      "admissionDate": "2025-11-03",
+      "unitId": "UNIT-A",
+      "roomNumber": "104",
+      "bedNumber": "A",
+      "payerType": "MEDICARE",
+      "advanceDirective": "DNR",
+      "language": "en"
+    }
+  ]
+}

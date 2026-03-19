@@ -17,6 +17,8 @@ apis:
     type: Documentation
   - url: https://developer.pointclickcare.com/spa
     type: Portal
+  - url: openapi/pointclickcare-ehr-openapi.yml
+    type: OpenAPI
   description: >-
     PointClickCare provides EHR and care coordination APIs for long-term and post-acute care facilities. APIs enable access to resident records, medication administration, clinical assessments, and care plan data for skilled nursing facilities and senior living communities.
 
@@ -57,6 +59,12 @@ common:
   type: Status
 - url: https://github.com/PointClickCare
   type: GitHubOrganization
+- url: openapi/pointclickcare-ehr-openapi.yml
+  type: OpenAPI
+- url: json-schema/pointclickcare-patient-schema.json
+  type: JSONSchema
+- url: json-ld/pointclickcare-context.jsonld
+  type: JSONLDContext
 maintainers:
 - name: Kin Lane
   email: kin@apievangelist.com
