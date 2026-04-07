@@ -21,21 +21,19 @@ security:
   - oauth2: []
 
 tags:
-  - name: Patients
-    description: Resident/patient demographics and admission data
-  - name: Medications
-    description: Medication orders and administration records (MAR)
   - name: Assessments
     description: Clinical assessments (MDS, fall risk, etc.)
-  - name: CarePlans
-    description: Care plan management
-  - name: Facilities
-    description: Facility and unit management
-  - name: Vitals
-    description: Vital signs records
   - name: Diagnoses
     description: Diagnosis and condition records
 
+  - name: Facilities
+    description: Facility and unit management
+  - name: Medications
+    description: Medication orders and administration records (MAR)
+  - name: Patients
+    description: Resident/patient demographics and admission data
+  - name: Vitals
+    description: Vital signs records
 paths:
   /patients:
     get:
