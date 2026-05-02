@@ -1,10 +1,23 @@
-# Unknown (pointclickcare)
+# PointClickCare (pointclickcare)
+
+PointClickCare is the leading cloud-based software platform for the senior care and post-acute care industry, providing electronic health records (EHR), care coordination, financial management, and clinical decision support to skilled nursing facilities, senior living communities, and home health agencies. PointClickCare publishes both a partner EHR API and a HL7 FHIR API for clinical interoperability across the long-term and post-acute care (LTPAC) ecosystem.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/pointclickcare/refs/heads/main/apis.yml)
 
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- Healthcare, Long-Term Care, Post-Acute Care, EHR, FHIR, Senior Care, Interoperability
+
 ## Timestamps
 
-- **Modified:** 2026-03-18 
+- **Created:** 2026-03-18
+- **Modified:** 2026-04-28
 
 ## APIs
 
