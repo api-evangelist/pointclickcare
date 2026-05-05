@@ -1,0 +1,13 @@
+{
+  "repo": "pointclickcare",
+  "feeds": [
+    {
+      "source": "https://pointclickcare.com/blog/",
+      "feed_url": "https://pointclickcare.com/feed/",
+      "saved": 10,
+      "title": "PointClickCare"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:33:57Z"
+}
