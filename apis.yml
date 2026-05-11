@@ -89,6 +89,13 @@ common:
     url: https://status.pointclickcare.com/
   - type: GitHubOrganization
     url: https://github.com/PointClickCare
+  - type: Integrations
+    url: https://pointclickcare.com/blog/our-markets/marketplace/
+integrations:
+  - name: blog-header-marketplace-feb22-f
+  - name: Illustration of two hands shaking
+  - name: SL_CNA_Charting_System_Blog_1200x600
+  - name: 194347_BRAND_OLP_Blog_James_Leader_Perspectives_1200x600 (2)
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
