@@ -85,7 +85,7 @@ common:
     url: https://pointclickcare.com/privacy-policy/
   - type: TermsOfService
     url: https://pointclickcare.com/legal/terms-conditions/
-  - type: Status
+  - type: StatusPage
     url: https://status.pointclickcare.com/
   - type: GitHubOrganization
     url: https://github.com/PointClickCare
