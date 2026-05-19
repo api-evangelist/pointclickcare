@@ -1,0 +1,78 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: PointClickCare Long-Term Care EHR API — Diagnoses
+  description: 'PointClickCare Long-Term Care EHR API — Diagnoses. 1 operations. Lead operation: Get patient diagnoses. Self-contained
+    Naftiko capability covering one Pointclickcare business surface.'
+  tags:
+  - Pointclickcare
+  - Diagnoses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    POINTCLICKCARE_API_KEY: POINTCLICKCARE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ehr-diagnoses
+    baseUri: https://api.pointclickcare.com/v2
+    description: PointClickCare Long-Term Care EHR API — Diagnoses business capability. Self-contained, no shared references.
+    resources:
+    - name: patients-patientId-diagnoses
+      path: /patients/{patientId}/diagnoses
+      operations:
+      - name: getpatientdiagnoses
+        method: GET
+        description: Get patient diagnoses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.POINTCLICKCARE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ehr-diagnoses-rest
+    port: 8080
+    description: REST adapter for PointClickCare Long-Term Care EHR API — Diagnoses. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/patients/{patientid}/diagnoses
+      name: patients-patientid-diagnoses
+      description: REST surface for patients-patientId-diagnoses.
+      operations:
+      - method: GET
+        name: getpatientdiagnoses
+        description: Get patient diagnoses
+        call: ehr-diagnoses.getpatientdiagnoses
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ehr-diagnoses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for PointClickCare Long-Term Care EHR API — Diagnoses. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-patient-diagnoses
+      description: Get patient diagnoses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ehr-diagnoses.getpatientdiagnoses
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.

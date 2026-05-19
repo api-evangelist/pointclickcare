@@ -1,0 +1,94 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: PointClickCare Long-Term Care EHR API — Vitals
+  description: 'PointClickCare Long-Term Care EHR API — Vitals. 1 operations. Lead operation: Get patient vitals. Self-contained
+    Naftiko capability covering one Pointclickcare business surface.'
+  tags:
+  - Pointclickcare
+  - Vitals
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    POINTCLICKCARE_API_KEY: POINTCLICKCARE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ehr-vitals
+    baseUri: https://api.pointclickcare.com/v2
+    description: PointClickCare Long-Term Care EHR API — Vitals business capability. Self-contained, no shared references.
+    resources:
+    - name: patients-patientId-vitals
+      path: /patients/{patientId}/vitals
+      operations:
+      - name: getpatientvitals
+        method: GET
+        description: Get patient vitals
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: vitalType
+          in: query
+          type: string
+          description: Filter by vital type
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.POINTCLICKCARE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ehr-vitals-rest
+    port: 8080
+    description: REST adapter for PointClickCare Long-Term Care EHR API — Vitals. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/patients/{patientid}/vitals
+      name: patients-patientid-vitals
+      description: REST surface for patients-patientId-vitals.
+      operations:
+      - method: GET
+        name: getpatientvitals
+        description: Get patient vitals
+        call: ehr-vitals.getpatientvitals
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          vitalType: rest.vitalType
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ehr-vitals-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for PointClickCare Long-Term Care EHR API — Vitals. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-patient-vitals
+      description: Get patient vitals
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ehr-vitals.getpatientvitals
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        vitalType: tools.vitalType
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
