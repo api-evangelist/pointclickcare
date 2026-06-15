@@ -1,0 +1,1598 @@
+{
+  "item": [
+    {
+      "id": "ffccd56e-9776-47f5-a86f-4e6fde73250f",
+      "name": "Assessments",
+      "description": {
+        "content": "Clinical assessments (MDS, fall risk, etc.)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a11cec7-78e5-4132-86ed-783d0d723403",
+          "name": "List patient assessments",
+          "request": {
+            "name": "List patient assessments",
+            "description": {
+              "content": "Returns clinical assessments (MDS, fall risk, skin assessment, etc.) for a resident.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients",
+                ":patientId",
+                "assessments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by assessment type"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) PointClickCare resident/patient identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfae354b-a102-4683-afd9-b3efdee49903",
+              "name": "Assessment list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"assessmentId\": \"string\",\n      \"patientId\": \"string\",\n      \"assessmentType\": \"string\",\n      \"assessmentDate\": \"2010-06-12\",\n      \"status\": \"DRAFT\",\n      \"completedBy\": \"string\",\n      \"score\": 5008.966710030567,\n      \"riskLevel\": \"string\"\n    },\n    {\n      \"assessmentId\": \"string\",\n      \"patientId\": \"string\",\n      \"assessmentType\": \"string\",\n      \"assessmentDate\": \"1993-11-11\",\n      \"status\": \"COMPLETE\",\n      \"completedBy\": \"string\",\n      \"score\": 777.9692363264934,\n      \"riskLevel\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6dec7200-da6e-4aaa-ac07-82323c93e168",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ea2d1347-5b6b-48c3-8117-727c3397d701",
+      "name": "Diagnoses",
+      "description": {
+        "content": "Diagnosis and condition records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d368ac5-e4fa-474a-af50-3fa73252851d",
+          "name": "Get patient diagnoses",
+          "request": {
+            "name": "Get patient diagnoses",
+            "description": {
+              "content": "Returns ICD-coded diagnoses and active conditions for a resident.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients",
+                ":patientId",
+                "diagnoses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "ACTIVE"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) PointClickCare resident/patient identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21c657ed-07a1-48ce-a13e-7821131feeca",
+              "name": "Diagnosis records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "diagnoses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "ACTIVE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"diagnosisId\": \"string\",\n      \"patientId\": \"string\",\n      \"icdCode\": \"string\",\n      \"icdCodeSet\": \"ICD-10-CM\",\n      \"description\": \"string\",\n      \"diagnosisType\": \"COMORBIDITY\",\n      \"status\": \"RESOLVED\",\n      \"onsetDate\": \"2007-06-30\",\n      \"resolutionDate\": \"1952-09-13\"\n    },\n    {\n      \"diagnosisId\": \"string\",\n      \"patientId\": \"string\",\n      \"icdCode\": \"string\",\n      \"icdCodeSet\": \"ICD-10-CM\",\n      \"description\": \"string\",\n      \"diagnosisType\": \"SECONDARY\",\n      \"status\": \"ACTIVE\",\n      \"onsetDate\": \"1968-04-16\",\n      \"resolutionDate\": \"1957-09-09\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bda8c910-d3c3-40b2-9a5c-003372f87294",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "diagnoses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "ACTIVE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cf128cb4-4929-4e3c-876c-1d33bbb7f7e9",
+      "name": "Facilities",
+      "description": {
+        "content": "Facility and unit management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d928ee37-5d64-4f18-aa20-b30eeffd6765",
+          "name": "List facilities",
+          "request": {
+            "name": "List facilities",
+            "description": {
+              "content": "Returns facilities accessible to the authenticated application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "facilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2b11086-66a8-4018-b60a-56035b1d0398",
+              "name": "Facility list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "facilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"facilityId\": \"string\",\n      \"name\": \"string\",\n      \"npi\": \"string\",\n      \"medicareProviderNumber\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"st\",\n      \"zip\": \"string\",\n      \"phone\": \"string\",\n      \"facilityType\": \"HOSPICE\"\n    },\n    {\n      \"facilityId\": \"string\",\n      \"name\": \"string\",\n      \"npi\": \"string\",\n      \"medicareProviderNumber\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"st\",\n      \"zip\": \"string\",\n      \"phone\": \"string\",\n      \"facilityType\": \"ALF\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b3298cf-decc-4ea9-9d44-33879bafaf4e",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "facilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f279991c-86a5-43d6-8695-0dc66903a831",
+      "name": "Medications",
+      "description": {
+        "content": "Medication orders and administration records (MAR)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79e4afed-5245-43ee-83a1-e9c6c5dd1b7e",
+          "name": "Get patient medication orders",
+          "request": {
+            "name": "Get patient medication orders",
+            "description": {
+              "content": "Returns active and historical medication orders for a resident.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients",
+                ":patientId",
+                "medications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by order status"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) PointClickCare resident/patient identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6fbe68ff-45ad-41be-9bed-f759ef2612b7",
+              "name": "Medication orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "medications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"orderId\": \"string\",\n      \"patientId\": \"string\",\n      \"medicationName\": \"string\",\n      \"genericName\": \"string\",\n      \"ndc\": \"string\",\n      \"dose\": \"string\",\n      \"route\": \"RECTAL\",\n      \"frequency\": \"string\",\n      \"status\": \"COMPLETED\",\n      \"startDate\": \"1971-02-14\",\n      \"endDate\": \"1990-09-15\",\n      \"orderingPhysicianNpi\": \"string\",\n      \"orderDatetime\": \"2026-05-19T06:24:40.514Z\",\n      \"indication\": \"string\"\n    },\n    {\n      \"orderId\": \"string\",\n      \"patientId\": \"string\",\n      \"medicationName\": \"string\",\n      \"genericName\": \"string\",\n      \"ndc\": \"string\",\n      \"dose\": \"string\",\n      \"route\": \"OTHER\",\n      \"frequency\": \"string\",\n      \"status\": \"COMPLETED\",\n      \"startDate\": \"2016-05-30\",\n      \"endDate\": \"2017-01-30\",\n      \"orderingPhysicianNpi\": \"string\",\n      \"orderDatetime\": \"1960-05-16T11:39:45.384Z\",\n      \"indication\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c1dcb8a-a500-4225-84f4-d7a002c2b705",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "medications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b89e44e-9042-4d68-b257-8747e78b4be6",
+          "name": "Get medication administration records",
+          "request": {
+            "name": "Get medication administration records",
+            "description": {
+              "content": "Returns medication administration records (MAR) documenting when medications were given.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients",
+                ":patientId",
+                "medications",
+                "mar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) PointClickCare resident/patient identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0af39f97-f235-4bb7-9e4e-afdb15668004",
+              "name": "MAR records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "medications",
+                    "mar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"marId\": \"string\",\n      \"orderId\": \"string\",\n      \"patientId\": \"string\",\n      \"scheduledDatetime\": \"1962-01-07T02:45:36.980Z\",\n      \"administeredDatetime\": \"1987-03-18T00:53:01.008Z\",\n      \"status\": \"GIVEN\",\n      \"doseAdministered\": \"string\",\n      \"notGivenReason\": \"string\",\n      \"administeredBy\": \"string\",\n      \"notes\": \"string\"\n    },\n    {\n      \"marId\": \"string\",\n      \"orderId\": \"string\",\n      \"patientId\": \"string\",\n      \"scheduledDatetime\": \"1999-10-29T01:54:29.301Z\",\n      \"administeredDatetime\": \"2020-01-14T04:20:10.239Z\",\n      \"status\": \"REFUSED\",\n      \"doseAdministered\": \"string\",\n      \"notGivenReason\": \"string\",\n      \"administeredBy\": \"string\",\n      \"notes\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9074cf80-e41f-4c63-bdc3-e2785843f2f7",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "medications",
+                    "mar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1577b3de-3302-4464-82a5-92463c3ce8c7",
+      "name": "Patients",
+      "description": {
+        "content": "Resident/patient demographics and admission data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec0a34a9-537c-4b8e-a90b-7886a74cfe78",
+          "name": "List residents/patients",
+          "request": {
+            "name": "List residents/patients",
+            "description": {
+              "content": "Returns a list of residents/patients at the specified facility.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "facilityId",
+                  "value": "<string>",
+                  "description": "(Required) Facility identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by admission status"
+                },
+                {
+                  "disabled": false,
+                  "key": "unitId",
+                  "value": "<string>",
+                  "description": "Filter by unit/floor"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedSince",
+                  "value": "<dateTime>",
+                  "description": "Return only records updated after this timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29ebf18d-0311-4c8a-b1a3-566fbfc662cc",
+              "name": "Patient list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facilityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updatedSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"patientId\": \"string\",\n      \"facilityId\": \"string\",\n      \"mrn\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"middleName\": \"string\",\n      \"dateOfBirth\": \"1947-03-26\",\n      \"gender\": \"M\",\n      \"status\": \"RESPITE\",\n      \"admissionDate\": \"2004-06-12\",\n      \"dischargeDate\": \"1999-01-05\",\n      \"unitId\": \"string\",\n      \"roomNumber\": \"string\",\n      \"bedNumber\": \"string\",\n      \"payerType\": \"MEDICAID\",\n      \"lastUpdateDatetime\": \"1962-09-18T15:01:45.643Z\"\n    },\n    {\n      \"patientId\": \"string\",\n      \"facilityId\": \"string\",\n      \"mrn\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"middleName\": \"string\",\n      \"dateOfBirth\": \"1979-03-31\",\n      \"gender\": \"U\",\n      \"status\": \"RESPITE\",\n      \"admissionDate\": \"1967-06-05\",\n      \"dischargeDate\": \"1952-03-21\",\n      \"unitId\": \"string\",\n      \"roomNumber\": \"string\",\n      \"bedNumber\": \"string\",\n      \"payerType\": \"PRIVATE_PAY\",\n      \"lastUpdateDatetime\": \"1962-02-20T06:03:41.166Z\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 8275,\n    \"limit\": 6278,\n    \"totalCount\": 2797,\n    \"hasMore\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb1189c8-f0dc-419a-9674-656ac5607cf4",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facilityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updatedSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d1c5028-4f61-4f31-9ee2-61d522386d97",
+              "name": "Insufficient permissions for this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facilityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updatedSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d418dab4-3d70-4fa4-8335-8e6833e66948",
+          "name": "Get a resident/patient",
+          "request": {
+            "name": "Get a resident/patient",
+            "description": {
+              "content": "Returns demographic and admission details for a single resident.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients",
+                ":patientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) PointClickCare resident/patient identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb0d02f4-7a20-4075-9628-4faa574307bd",
+              "name": "Patient details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patientId\": \"string\",\n  \"facilityId\": \"string\",\n  \"mrn\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"middleName\": \"string\",\n  \"dateOfBirth\": \"1981-08-06\",\n  \"gender\": \"F\",\n  \"status\": \"DISCHARGED\",\n  \"admissionDate\": \"2024-03-05\",\n  \"dischargeDate\": \"1990-06-07\",\n  \"unitId\": \"string\",\n  \"roomNumber\": \"string\",\n  \"bedNumber\": \"string\",\n  \"payerType\": \"PRIVATE_PAY\",\n  \"lastUpdateDatetime\": \"1978-03-04T14:28:36.288Z\",\n  \"ssn\": \"string\",\n  \"primaryPhysician\": {\n    \"npi\": \"string\",\n    \"name\": \"string\"\n  },\n  \"emergencyContact\": {\n    \"name\": \"string\",\n    \"relationship\": \"string\",\n    \"phone\": \"string\"\n  },\n  \"allergies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"advanceDirective\": \"COMFORT_CARE\",\n  \"language\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a98a5c1-bc66-43bf-9e20-c00da63f6f08",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0ccd48f3-bedf-4759-aa8b-bce98f7df4b4",
+      "name": "Vitals",
+      "description": {
+        "content": "Vital signs records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "08e8d9df-b263-41ce-b416-73f494508e55",
+          "name": "Get patient vitals",
+          "request": {
+            "name": "Get patient vitals",
+            "description": {
+              "content": "Returns vital sign measurements for a resident within a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients",
+                ":patientId",
+                "vitals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "vitalType",
+                  "value": "<string>",
+                  "description": "Filter by vital type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) PointClickCare resident/patient identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0fa3b36-792d-4410-87f9-b6a187ed211a",
+              "name": "Vital sign records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "vitals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "vitalType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"vitalId\": \"string\",\n      \"patientId\": \"string\",\n      \"vitalType\": \"RESPIRATION_RATE\",\n      \"recordedDatetime\": \"1947-06-05T02:12:14.605Z\",\n      \"systolic\": 8406,\n      \"diastolic\": 6359,\n      \"heartRate\": 9689,\n      \"temperature\": 1493.8808236101308,\n      \"temperatureUnit\": \"C\",\n      \"weight\": 2630.1381342096643,\n      \"weightUnit\": \"LBS\",\n      \"oxygenSaturation\": 3054.0805615062595,\n      \"respirationRate\": 1721,\n      \"bloodGlucose\": 4659.8712737550995,\n      \"bloodGlucoseUnit\": \"MG_DL\",\n      \"recordedBy\": \"string\"\n    },\n    {\n      \"vitalId\": \"string\",\n      \"patientId\": \"string\",\n      \"vitalType\": \"OXYGEN_SATURATION\",\n      \"recordedDatetime\": \"2010-10-30T10:24:00.906Z\",\n      \"systolic\": 2737,\n      \"diastolic\": 8720,\n      \"heartRate\": 9253,\n      \"temperature\": 1576.1550066684038,\n      \"temperatureUnit\": \"F\",\n      \"weight\": 7209.972207543092,\n      \"weightUnit\": \"LBS\",\n      \"oxygenSaturation\": 6738.974421295478,\n      \"respirationRate\": 9806,\n      \"bloodGlucose\": 916.3728687750428,\n      \"bloodGlucoseUnit\": \"MG_DL\",\n      \"recordedBy\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca60f5be-c8d5-41ab-8d6f-fff92dfbddd0",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "vitals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "vitalType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pointclickcare.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient.read clinical.read facility.read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.pointclickcare.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.pointclickcare.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fa5c0559-3574-4b89-8495-70509dc3bc22",
+    "name": "PointClickCare Long-Term Care EHR API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.\n\nContact Support:\n Name: PointClickCare Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
