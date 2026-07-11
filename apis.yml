@@ -65,6 +65,10 @@ apis:
       - type: Documentation
         url: https://developer.pointclickcare.com/spa
 common:
+  - type: TrustCenter
+    url: security/pointclickcare-trust-center.yml
+  - type: DomainSecurity
+    url: security/pointclickcare-domain-security.yml
   - type: Authentication
     url: authentication/pointclickcare-authentication.yml
   - type: OAuthScopes
