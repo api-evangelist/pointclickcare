@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pointclickcare-ehr-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/pointclickcare-ehr-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.pointclickcare.com/oauth2/authorize
+    tokenUrl: https://login.pointclickcare.com/oauth2/token
+  description: OAuth2 authorization code flow via PointClickCare identity server
+scopes:
+- scope: clinical.read
+  description: Read clinical data (vitals, medications, assessments)
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/pointclickcare-ehr-openapi.yml
+- scope: facility.read
+  description: Read facility information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/pointclickcare-ehr-openapi.yml
+- scope: patient.read
+  description: Read patient demographics
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/pointclickcare-ehr-openapi.yml

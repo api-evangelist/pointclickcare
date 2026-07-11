@@ -65,6 +65,10 @@ apis:
       - type: Documentation
         url: https://developer.pointclickcare.com/spa
 common:
+  - type: Authentication
+    url: authentication/pointclickcare-authentication.yml
+  - type: OAuthScopes
+    url: scopes/pointclickcare-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/pointclickcare
   - type: Portal
