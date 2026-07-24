@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: PointClickCare Long-Term Care EHR Assessments Facilities API
+  description: PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.
+  version: 2.0.0
+  contact:
+    name: PointClickCare Developer Support
+    url: https://developer.pointclickcare.com/spa
+  license:
+    name: PointClickCare Terms of Service
+    url: https://pointclickcare.com/legal/terms-conditions/
+servers:
+- url: https://api.pointclickcare.com/v2
+  description: PointClickCare API
+security:
+- oauth2: []
+tags:
+- name: Facilities
+  description: Facility and unit management
+paths:
+  /facilities:
+    get:
+      operationId: listFacilities
+      summary: List facilities
+      description: Returns facilities accessible to the authenticated application.
+      tags:
+      - Facilities
+      responses:
+        '200':
+          description: Facility list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Facility'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    Facility:
+      type: object
+      properties:
+        facilityId:
+          type: string
+        name:
+          type: string
+        npi:
+          type: string
+        medicareProviderNumber:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+          maxLength: 2
+        zip:
+          type: string
+        phone:
+          type: string
+        facilityType:
+          type: string
+          enum:
+          - SNF
+          - ALF
+          - ICF
+          - CCRC
+          - HOME_HEALTH
+          - HOSPICE
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authorization code flow via PointClickCare identity server
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.pointclickcare.com/oauth2/authorize
+          tokenUrl: https://login.pointclickcare.com/oauth2/token
+          scopes:
+            patient.read: Read patient demographics
+            clinical.read: Read clinical data (vitals, medications, assessments)
+            facility.read: Read facility information

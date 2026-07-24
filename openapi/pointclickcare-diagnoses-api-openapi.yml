@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: PointClickCare Long-Term Care EHR Assessments Diagnoses API
+  description: PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.
+  version: 2.0.0
+  contact:
+    name: PointClickCare Developer Support
+    url: https://developer.pointclickcare.com/spa
+  license:
+    name: PointClickCare Terms of Service
+    url: https://pointclickcare.com/legal/terms-conditions/
+servers:
+- url: https://api.pointclickcare.com/v2
+  description: PointClickCare API
+security:
+- oauth2: []
+tags:
+- name: Diagnoses
+  description: Diagnosis and condition records
+paths:
+  /patients/{patientId}/diagnoses:
+    get:
+      operationId: getPatientDiagnoses
+      summary: Get patient diagnoses
+      description: Returns ICD-coded diagnoses and active conditions for a resident.
+      tags:
+      - Diagnoses
+      parameters:
+      - $ref: '#/components/parameters/PatientId'
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - ALL
+          default: ACTIVE
+      responses:
+        '200':
+          description: Diagnosis records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Diagnosis'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Diagnosis:
+      type: object
+      description: A patient diagnosis or condition
+      properties:
+        diagnosisId:
+          type: string
+        patientId:
+          type: string
+        icdCode:
+          type: string
+          description: ICD-10-CM code (e.g., I10, E11.9)
+        icdCodeSet:
+          type: string
+          enum:
+          - ICD-10-CM
+          - ICD-9-CM
+          default: ICD-10-CM
+        description:
+          type: string
+        diagnosisType:
+          type: string
+          enum:
+          - PRIMARY
+          - SECONDARY
+          - COMORBIDITY
+          - COMPLICATION
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - RESOLVED
+        onsetDate:
+          type: string
+          format: date
+          nullable: true
+        resolutionDate:
+          type: string
+          format: date
+          nullable: true
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authorization code flow via PointClickCare identity server
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.pointclickcare.com/oauth2/authorize
+          tokenUrl: https://login.pointclickcare.com/oauth2/token
+          scopes:
+            patient.read: Read patient demographics
+            clinical.read: Read clinical data (vitals, medications, assessments)
+            facility.read: Read facility information

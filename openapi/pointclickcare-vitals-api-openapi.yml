@@ -1,0 +1,181 @@
+openapi: 3.1.0
+info:
+  title: PointClickCare Long-Term Care EHR Assessments Vitals API
+  description: PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.
+  version: 2.0.0
+  contact:
+    name: PointClickCare Developer Support
+    url: https://developer.pointclickcare.com/spa
+  license:
+    name: PointClickCare Terms of Service
+    url: https://pointclickcare.com/legal/terms-conditions/
+servers:
+- url: https://api.pointclickcare.com/v2
+  description: PointClickCare API
+security:
+- oauth2: []
+tags:
+- name: Vitals
+  description: Vital signs records
+paths:
+  /patients/{patientId}/vitals:
+    get:
+      operationId: getPatientVitals
+      summary: Get patient vitals
+      description: Returns vital sign measurements for a resident within a date range.
+      tags:
+      - Vitals
+      parameters:
+      - $ref: '#/components/parameters/PatientId'
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: vitalType
+        in: query
+        description: Filter by vital type
+        schema:
+          type: string
+          enum:
+          - BLOOD_PRESSURE
+          - HEART_RATE
+          - TEMPERATURE
+          - WEIGHT
+          - OXYGEN_SATURATION
+          - RESPIRATION_RATE
+          - BLOOD_GLUCOSE
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Vital sign records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VitalSign'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    VitalSign:
+      type: object
+      description: A vital sign measurement
+      properties:
+        vitalId:
+          type: string
+        patientId:
+          type: string
+        vitalType:
+          type: string
+          enum:
+          - BLOOD_PRESSURE
+          - HEART_RATE
+          - TEMPERATURE
+          - WEIGHT
+          - OXYGEN_SATURATION
+          - RESPIRATION_RATE
+          - BLOOD_GLUCOSE
+        recordedDatetime:
+          type: string
+          format: date-time
+        systolic:
+          type: integer
+          description: Systolic blood pressure (mmHg)
+          nullable: true
+        diastolic:
+          type: integer
+          description: Diastolic blood pressure (mmHg)
+          nullable: true
+        heartRate:
+          type: integer
+          nullable: true
+        temperature:
+          type: number
+          format: double
+          nullable: true
+        temperatureUnit:
+          type: string
+          enum:
+          - F
+          - C
+          nullable: true
+        weight:
+          type: number
+          format: double
+          nullable: true
+        weightUnit:
+          type: string
+          enum:
+          - LBS
+          - KG
+          nullable: true
+        oxygenSaturation:
+          type: number
+          format: double
+          nullable: true
+        respirationRate:
+          type: integer
+          nullable: true
+        bloodGlucose:
+          type: number
+          format: double
+          nullable: true
+        bloodGlucoseUnit:
+          type: string
+          enum:
+          - MG_DL
+          - MMOL_L
+          nullable: true
+        recordedBy:
+          type: string
+          description: Staff member who recorded the vital
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authorization code flow via PointClickCare identity server
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.pointclickcare.com/oauth2/authorize
+          tokenUrl: https://login.pointclickcare.com/oauth2/token
+          scopes:
+            patient.read: Read patient demographics
+            clinical.read: Read clinical data (vitals, medications, assessments)
+            facility.read: Read facility information

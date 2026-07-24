@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: PointClickCare Long-Term Care EHR Assessments Patients API
+  description: PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.
+  version: 2.0.0
+  contact:
+    name: PointClickCare Developer Support
+    url: https://developer.pointclickcare.com/spa
+  license:
+    name: PointClickCare Terms of Service
+    url: https://pointclickcare.com/legal/terms-conditions/
+servers:
+- url: https://api.pointclickcare.com/v2
+  description: PointClickCare API
+security:
+- oauth2: []
+tags:
+- name: Patients
+  description: Resident/patient demographics and admission data
+paths:
+  /patients:
+    get:
+      operationId: listPatients
+      summary: List residents/patients
+      description: Returns a list of residents/patients at the specified facility.
+      tags:
+      - Patients
+      parameters:
+      - name: facilityId
+        in: query
+        required: true
+        description: Facility identifier
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by admission status
+        schema:
+          type: string
+          enum:
+          - ACTIVE
+          - DISCHARGED
+          - DECEASED
+          - RESPITE
+          - LOA
+      - name: unitId
+        in: query
+        description: Filter by unit/floor
+        schema:
+          type: string
+      - name: updatedSince
+        in: query
+        description: Return only records updated after this timestamp
+        schema:
+          type: string
+          format: date-time
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+          maximum: 200
+      responses:
+        '200':
+          description: Patient list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Patient'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /patients/{patientId}:
+    get:
+      operationId: getPatient
+      summary: Get a resident/patient
+      description: Returns demographic and admission details for a single resident.
+      tags:
+      - Patients
+      parameters:
+      - $ref: '#/components/parameters/PatientId'
+      responses:
+        '200':
+          description: Patient details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Patient:
+      type: object
+      description: A resident/patient demographic summary
+      properties:
+        patientId:
+          type: string
+          description: PointClickCare patient identifier
+        facilityId:
+          type: string
+        mrn:
+          type: string
+          description: Medical record number
+        firstName:
+          type: string
+        lastName:
+          type: string
+        middleName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+          - M
+          - F
+          - U
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - DISCHARGED
+          - DECEASED
+          - RESPITE
+          - LOA
+        admissionDate:
+          type: string
+          format: date
+        dischargeDate:
+          type: string
+          format: date
+          nullable: true
+        unitId:
+          type: string
+        roomNumber:
+          type: string
+        bedNumber:
+          type: string
+        payerType:
+          type: string
+          enum:
+          - MEDICARE
+          - MEDICAID
+          - PRIVATE_PAY
+          - INSURANCE
+          - VA
+        lastUpdateDatetime:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    PatientDetail:
+      allOf:
+      - $ref: '#/components/schemas/Patient'
+      - type: object
+        properties:
+          ssn:
+            type: string
+            description: Last 4 digits only
+          primaryPhysician:
+            type: object
+            properties:
+              npi:
+                type: string
+              name:
+                type: string
+          emergencyContact:
+            type: object
+            properties:
+              name:
+                type: string
+              relationship:
+                type: string
+              phone:
+                type: string
+          allergies:
+            type: array
+            items:
+              type: string
+          advanceDirective:
+            type: string
+            enum:
+            - FULL_CODE
+            - DNR
+            - DNI
+            - COMFORT_CARE
+            - UNKNOWN
+          language:
+            type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalCount:
+          type: integer
+        hasMore:
+          type: boolean
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient permissions for this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authorization code flow via PointClickCare identity server
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.pointclickcare.com/oauth2/authorize
+          tokenUrl: https://login.pointclickcare.com/oauth2/token
+          scopes:
+            patient.read: Read patient demographics
+            clinical.read: Read clinical data (vitals, medications, assessments)
+            facility.read: Read facility information
