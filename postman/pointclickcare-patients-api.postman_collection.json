@@ -1,0 +1,476 @@
+{
+  "info": {
+    "_postman_id": "0a9cf2da-8c43-4aef-a626-e32d5a57430a",
+    "name": "PointClickCare Long-Term Care EHR Assessments Patients API",
+    "description": "PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.\n\nContact Support:\n Name: PointClickCare Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:38:51.000Z",
+    "updatedAt": "2026-07-28T02:38:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0a9cf2da-8c43-4aef-a626-e32d5a57430a"
+  },
+  "item": [
+    {
+      "name": "patients",
+      "item": [
+        {
+          "name": "{patientId}",
+          "item": [
+            {
+              "name": "Get a resident/patient",
+              "id": "391c87b4-89f7-40cd-9c95-443e66e8b799",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/patients/:patientId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "patients",
+                    ":patientId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d720405f-54e3-4796-ac5d-606e79193a9f",
+                      "key": "patientId",
+                      "value": "<string>",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "description": "Returns demographic and admission details for a single resident."
+              },
+              "response": [
+                {
+                  "id": "39381b6d-d59a-485c-b710-7a05660bc349",
+                  "name": "Patient details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "patientId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"patientId\": \"<string>\",\n  \"facilityId\": \"<string>\",\n  \"mrn\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"middleName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"gender\": \"M\",\n  \"status\": \"ACTIVE\",\n  \"admissionDate\": \"<date>\",\n  \"dischargeDate\": \"<date>\",\n  \"unitId\": \"<string>\",\n  \"roomNumber\": \"<string>\",\n  \"bedNumber\": \"<string>\",\n  \"payerType\": \"MEDICAID\",\n  \"lastUpdateDatetime\": \"<dateTime>\",\n  \"ssn\": \"<string>\",\n  \"primaryPhysician\": {\n    \"npi\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"emergencyContact\": {\n    \"name\": \"<string>\",\n    \"relationship\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"allergies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"advanceDirective\": \"UNKNOWN\",\n  \"language\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:38:51.000Z",
+                  "updatedAt": "2026-07-28T02:38:51.000Z",
+                  "uid": "35240-39381b6d-d59a-485c-b710-7a05660bc349"
+                },
+                {
+                  "id": "f2a5a739-1024-499e-9b84-5c8bc7868cea",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "patientId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:38:51.000Z",
+                  "updatedAt": "2026-07-28T02:38:51.000Z",
+                  "uid": "35240-f2a5a739-1024-499e-9b84-5c8bc7868cea"
+                }
+              ],
+              "createdAt": "2026-07-28T02:38:51.000Z",
+              "updatedAt": "2026-07-28T02:38:51.000Z",
+              "uid": "35240-391c87b4-89f7-40cd-9c95-443e66e8b799"
+            }
+          ],
+          "id": "66d2cb28-bd27-4399-920a-84a9c69b0c94",
+          "createdAt": "2026-07-28T02:38:51.000Z",
+          "updatedAt": "2026-07-28T02:38:51.000Z",
+          "uid": "35240-66d2cb28-bd27-4399-920a-84a9c69b0c94"
+        },
+        {
+          "name": "List residents/patients",
+          "id": "d9d54e45-5809-403f-801e-dcbddf629e03",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/patients?facilityId=<string>&status=RESPITE&unitId=<string>&updatedSince=<dateTime>&offset=0&limit=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "patients"
+              ],
+              "query": [
+                {
+                  "description": "(Required) Facility identifier",
+                  "key": "facilityId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by admission status",
+                  "key": "status",
+                  "value": "RESPITE"
+                },
+                {
+                  "description": "Filter by unit/floor",
+                  "key": "unitId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Return only records updated after this timestamp",
+                  "key": "updatedSince",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Returns a list of residents/patients at the specified facility."
+          },
+          "response": [
+            {
+              "id": "0f877b38-75c2-423f-8bc7-23d963ec5b73",
+              "name": "Patient list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/patients?facilityId=<string>&status=RESPITE&unitId=<string>&updatedSince=<dateTime>&offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "patients"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Facility identifier",
+                      "key": "facilityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by admission status",
+                      "key": "status",
+                      "value": "RESPITE"
+                    },
+                    {
+                      "description": "Filter by unit/floor",
+                      "key": "unitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return only records updated after this timestamp",
+                      "key": "updatedSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"patientId\": \"<string>\",\n      \"facilityId\": \"<string>\",\n      \"mrn\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"dateOfBirth\": \"<date>\",\n      \"gender\": \"M\",\n      \"status\": \"RESPITE\",\n      \"admissionDate\": \"<date>\",\n      \"dischargeDate\": \"<date>\",\n      \"unitId\": \"<string>\",\n      \"roomNumber\": \"<string>\",\n      \"bedNumber\": \"<string>\",\n      \"payerType\": \"INSURANCE\",\n      \"lastUpdateDatetime\": \"<dateTime>\"\n    },\n    {\n      \"patientId\": \"<string>\",\n      \"facilityId\": \"<string>\",\n      \"mrn\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"dateOfBirth\": \"<date>\",\n      \"gender\": \"F\",\n      \"status\": \"DISCHARGED\",\n      \"admissionDate\": \"<date>\",\n      \"dischargeDate\": \"<date>\",\n      \"unitId\": \"<string>\",\n      \"roomNumber\": \"<string>\",\n      \"bedNumber\": \"<string>\",\n      \"payerType\": \"VA\",\n      \"lastUpdateDatetime\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"totalCount\": \"<integer>\",\n    \"hasMore\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:38:51.000Z",
+              "updatedAt": "2026-07-28T02:38:51.000Z",
+              "uid": "35240-0f877b38-75c2-423f-8bc7-23d963ec5b73"
+            },
+            {
+              "id": "30130562-1642-49dc-ba7a-a969602e1e28",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/patients?facilityId=<string>&status=RESPITE&unitId=<string>&updatedSince=<dateTime>&offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "patients"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Facility identifier",
+                      "key": "facilityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by admission status",
+                      "key": "status",
+                      "value": "RESPITE"
+                    },
+                    {
+                      "description": "Filter by unit/floor",
+                      "key": "unitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return only records updated after this timestamp",
+                      "key": "updatedSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:38:51.000Z",
+              "updatedAt": "2026-07-28T02:38:51.000Z",
+              "uid": "35240-30130562-1642-49dc-ba7a-a969602e1e28"
+            },
+            {
+              "id": "32f9e59f-8bed-4d20-9e40-7fdf494a9071",
+              "name": "Insufficient permissions for this resource",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/patients?facilityId=<string>&status=RESPITE&unitId=<string>&updatedSince=<dateTime>&offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "patients"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Facility identifier",
+                      "key": "facilityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by admission status",
+                      "key": "status",
+                      "value": "RESPITE"
+                    },
+                    {
+                      "description": "Filter by unit/floor",
+                      "key": "unitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return only records updated after this timestamp",
+                      "key": "updatedSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:38:51.000Z",
+              "updatedAt": "2026-07-28T02:38:51.000Z",
+              "uid": "35240-32f9e59f-8bed-4d20-9e40-7fdf494a9071"
+            }
+          ],
+          "createdAt": "2026-07-28T02:38:51.000Z",
+          "updatedAt": "2026-07-28T02:38:51.000Z",
+          "uid": "35240-d9d54e45-5809-403f-801e-dcbddf629e03"
+        }
+      ],
+      "id": "b0a7f3c3-1629-4e76-9b9b-f4a7bc707597",
+      "createdAt": "2026-07-28T02:38:51.000Z",
+      "updatedAt": "2026-07-28T02:38:51.000Z",
+      "uid": "35240-b0a7f3c3-1629-4e76-9b9b-f4a7bc707597"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient.read clinical.read facility.read",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.pointclickcare.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.pointclickcare.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pointclickcare.com/v2"
+    }
+  ]
+}

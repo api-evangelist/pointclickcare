@@ -1,0 +1,24 @@
+{
+  "provider": "pointclickcare",
+  "sources": [
+    "pointclickcare-assessments-api-openapi.yml",
+    "pointclickcare-diagnoses-api-openapi.yml",
+    "pointclickcare-facilities-api-openapi.yml",
+    "pointclickcare-medications-api-openapi.yml",
+    "pointclickcare-patients-api-openapi.yml",
+    "pointclickcare-vitals-api-openapi.yml"
+  ],
+  "outputs": [
+    "pointclickcare-assessments-api-openapi.yml",
+    "pointclickcare-diagnoses-api-openapi.yml",
+    "pointclickcare-facilities-api-openapi.yml",
+    "pointclickcare-medications-api-openapi.yml",
+    "pointclickcare-patients-api-openapi.yml",
+    "pointclickcare-vitals-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

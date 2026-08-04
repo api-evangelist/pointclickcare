@@ -1,0 +1,169 @@
+{
+  "info": {
+    "_postman_id": "fc0c9ed5-64f7-414b-9f89-e881f9e584ad",
+    "name": "PointClickCare Long-Term Care EHR Assessments Facilities API",
+    "description": "PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.\n\nContact Support:\n Name: PointClickCare Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:38:49.000Z",
+    "updatedAt": "2026-07-28T02:38:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fc0c9ed5-64f7-414b-9f89-e881f9e584ad"
+  },
+  "item": [
+    {
+      "name": "facilities",
+      "item": [
+        {
+          "name": "List facilities",
+          "id": "fda23f6f-fffc-4c68-8bf0-8460dd475684",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/facilities",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "facilities"
+              ]
+            },
+            "description": "Returns facilities accessible to the authenticated application."
+          },
+          "response": [
+            {
+              "id": "7fcd819a-302c-4b28-b053-af049f910b3a",
+              "name": "Facility list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/facilities",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "facilities"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"facilityId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"npi\": \"<string>\",\n      \"medicareProviderNumber\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"facilityType\": \"ALF\"\n    },\n    {\n      \"facilityId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"npi\": \"<string>\",\n      \"medicareProviderNumber\": \"<string>\",\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"facilityType\": \"HOME_HEALTH\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:38:50.000Z",
+              "updatedAt": "2026-07-28T02:38:50.000Z",
+              "uid": "35240-7fcd819a-302c-4b28-b053-af049f910b3a"
+            },
+            {
+              "id": "2317b7ab-e085-47d8-b9ef-d53b8c624766",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/facilities",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "facilities"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:38:50.000Z",
+              "updatedAt": "2026-07-28T02:38:50.000Z",
+              "uid": "35240-2317b7ab-e085-47d8-b9ef-d53b8c624766"
+            }
+          ],
+          "createdAt": "2026-07-28T02:38:50.000Z",
+          "updatedAt": "2026-07-28T02:38:50.000Z",
+          "uid": "35240-fda23f6f-fffc-4c68-8bf0-8460dd475684"
+        }
+      ],
+      "id": "13338a0e-c201-4843-9a74-af963838ce5d",
+      "createdAt": "2026-07-28T02:38:50.000Z",
+      "updatedAt": "2026-07-28T02:38:50.000Z",
+      "uid": "35240-13338a0e-c201-4843-9a74-af963838ce5d"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient.read clinical.read facility.read",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.pointclickcare.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.pointclickcare.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pointclickcare.com/v2"
+    }
+  ]
+}

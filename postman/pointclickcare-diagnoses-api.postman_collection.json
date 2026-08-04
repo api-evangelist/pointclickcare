@@ -1,0 +1,229 @@
+{
+  "info": {
+    "_postman_id": "4b9c72e9-3fb2-4238-861e-970ffb467263",
+    "name": "PointClickCare Long-Term Care EHR Assessments Diagnoses API",
+    "description": "PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.\n\nContact Support:\n Name: PointClickCare Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:38:48.000Z",
+    "updatedAt": "2026-07-28T02:38:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4b9c72e9-3fb2-4238-861e-970ffb467263"
+  },
+  "item": [
+    {
+      "name": "patients",
+      "item": [
+        {
+          "name": "{patientId}",
+          "item": [
+            {
+              "name": "diagnoses",
+              "item": [
+                {
+                  "name": "Get patient diagnoses",
+                  "id": "28844c53-080c-4892-83e6-039b20c08a69",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId/diagnoses?status=ACTIVE",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId",
+                        "diagnoses"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "ACTIVE"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "59600625-5b37-480f-aa34-22aed998bd16",
+                          "key": "patientId",
+                          "value": "<string>",
+                          "description": "(Required) PointClickCare resident/patient identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns ICD-coded diagnoses and active conditions for a resident."
+                  },
+                  "response": [
+                    {
+                      "id": "497e79c6-a668-4278-b9ce-176bde1647d4",
+                      "name": "Diagnosis records",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/diagnoses?status=ACTIVE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "diagnoses"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "ACTIVE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"diagnosisId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"icdCode\": \"<string>\",\n      \"icdCodeSet\": \"ICD-10-CM\",\n      \"description\": \"<string>\",\n      \"diagnosisType\": \"COMPLICATION\",\n      \"status\": \"INACTIVE\",\n      \"onsetDate\": \"<date>\",\n      \"resolutionDate\": \"<date>\"\n    },\n    {\n      \"diagnosisId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"icdCode\": \"<string>\",\n      \"icdCodeSet\": \"ICD-10-CM\",\n      \"description\": \"<string>\",\n      \"diagnosisType\": \"COMPLICATION\",\n      \"status\": \"ACTIVE\",\n      \"onsetDate\": \"<date>\",\n      \"resolutionDate\": \"<date>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:38:49.000Z",
+                      "updatedAt": "2026-07-28T02:38:49.000Z",
+                      "uid": "35240-497e79c6-a668-4278-b9ce-176bde1647d4"
+                    },
+                    {
+                      "id": "9b438a22-a7a9-4b67-912e-10e01b72f582",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/diagnoses?status=ACTIVE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "diagnoses"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "ACTIVE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:38:49.000Z",
+                      "updatedAt": "2026-07-28T02:38:49.000Z",
+                      "uid": "35240-9b438a22-a7a9-4b67-912e-10e01b72f582"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:38:49.000Z",
+                  "updatedAt": "2026-07-28T02:38:49.000Z",
+                  "uid": "35240-28844c53-080c-4892-83e6-039b20c08a69"
+                }
+              ],
+              "id": "1f4ac96f-ff87-418b-9848-9841e14d8832",
+              "createdAt": "2026-07-28T02:38:49.000Z",
+              "updatedAt": "2026-07-28T02:38:49.000Z",
+              "uid": "35240-1f4ac96f-ff87-418b-9848-9841e14d8832"
+            }
+          ],
+          "id": "1797bbeb-2391-4df9-9428-78b876cbcc6e",
+          "createdAt": "2026-07-28T02:38:49.000Z",
+          "updatedAt": "2026-07-28T02:38:49.000Z",
+          "uid": "35240-1797bbeb-2391-4df9-9428-78b876cbcc6e"
+        }
+      ],
+      "id": "033f528c-6520-4cfa-8d0a-07e65b0fec38",
+      "createdAt": "2026-07-28T02:38:49.000Z",
+      "updatedAt": "2026-07-28T02:38:49.000Z",
+      "uid": "35240-033f528c-6520-4cfa-8d0a-07e65b0fec38"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient.read clinical.read facility.read",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.pointclickcare.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.pointclickcare.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pointclickcare.com/v2"
+    }
+  ]
+}

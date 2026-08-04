@@ -1,0 +1,256 @@
+{
+  "info": {
+    "_postman_id": "3b7ebddd-6aeb-41d5-993a-232e3ad7ce83",
+    "name": "PointClickCare Long-Term Care EHR Assessments API",
+    "description": "PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.\n\nContact Support:\n Name: PointClickCare Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:38:47.000Z",
+    "updatedAt": "2026-07-28T02:38:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3b7ebddd-6aeb-41d5-993a-232e3ad7ce83"
+  },
+  "item": [
+    {
+      "name": "patients",
+      "item": [
+        {
+          "name": "{patientId}",
+          "item": [
+            {
+              "name": "assessments",
+              "item": [
+                {
+                  "name": "List patient assessments",
+                  "id": "82fdb828-0aa8-4eef-87c2-7dd945dfa9f3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId/assessments?type=<string>&startDate=<date>&endDate=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId",
+                        "assessments"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by assessment type",
+                          "key": "type",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "startDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "endDate",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "5d809b6c-5a84-4386-9320-d330b1272925",
+                          "key": "patientId",
+                          "value": "<string>",
+                          "description": "(Required) PointClickCare resident/patient identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns clinical assessments (MDS, fall risk, skin assessment, etc.) for a resident."
+                  },
+                  "response": [
+                    {
+                      "id": "9519b09b-1ebe-4456-82f1-fda7b409851d",
+                      "name": "Assessment list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/assessments?type=<string>&startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "assessments"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by assessment type",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"assessmentId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"assessmentType\": \"<string>\",\n      \"assessmentDate\": \"<date>\",\n      \"status\": \"LOCKED\",\n      \"completedBy\": \"<string>\",\n      \"score\": \"<double>\",\n      \"riskLevel\": \"<string>\"\n    },\n    {\n      \"assessmentId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"assessmentType\": \"<string>\",\n      \"assessmentDate\": \"<date>\",\n      \"status\": \"DRAFT\",\n      \"completedBy\": \"<string>\",\n      \"score\": \"<double>\",\n      \"riskLevel\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:38:48.000Z",
+                      "updatedAt": "2026-07-28T02:38:48.000Z",
+                      "uid": "35240-9519b09b-1ebe-4456-82f1-fda7b409851d"
+                    },
+                    {
+                      "id": "3b2e7f04-dae0-45ad-a381-ba3836f5f720",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/assessments?type=<string>&startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "assessments"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by assessment type",
+                              "key": "type",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:38:48.000Z",
+                      "updatedAt": "2026-07-28T02:38:48.000Z",
+                      "uid": "35240-3b2e7f04-dae0-45ad-a381-ba3836f5f720"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:38:48.000Z",
+                  "updatedAt": "2026-07-28T02:38:48.000Z",
+                  "uid": "35240-82fdb828-0aa8-4eef-87c2-7dd945dfa9f3"
+                }
+              ],
+              "id": "7ccafff8-bdc2-4975-8452-c21a510297f7",
+              "createdAt": "2026-07-28T02:38:48.000Z",
+              "updatedAt": "2026-07-28T02:38:48.000Z",
+              "uid": "35240-7ccafff8-bdc2-4975-8452-c21a510297f7"
+            }
+          ],
+          "id": "0f1389f7-28c2-41fe-b473-114c5b476d65",
+          "createdAt": "2026-07-28T02:38:48.000Z",
+          "updatedAt": "2026-07-28T02:38:48.000Z",
+          "uid": "35240-0f1389f7-28c2-41fe-b473-114c5b476d65"
+        }
+      ],
+      "id": "1b894c6d-5f17-4383-9651-d6a96f820207",
+      "createdAt": "2026-07-28T02:38:48.000Z",
+      "updatedAt": "2026-07-28T02:38:48.000Z",
+      "uid": "35240-1b894c6d-5f17-4383-9651-d6a96f820207"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient.read clinical.read facility.read",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.pointclickcare.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.pointclickcare.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pointclickcare.com/v2"
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "info": {
+    "_postman_id": "f7754f43-f928-47e3-8568-0e1d31e14708",
+    "name": "PointClickCare Long-Term Care EHR Assessments Vitals API",
+    "description": "PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.\n\nContact Support:\n Name: PointClickCare Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:38:52.000Z",
+    "updatedAt": "2026-07-28T02:38:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f7754f43-f928-47e3-8568-0e1d31e14708"
+  },
+  "item": [
+    {
+      "name": "patients",
+      "item": [
+        {
+          "name": "{patientId}",
+          "item": [
+            {
+              "name": "vitals",
+              "item": [
+                {
+                  "name": "Get patient vitals",
+                  "id": "53df26b6-e99e-4130-abc6-35171fe117fe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId/vitals?startDate=<date>&endDate=<date>&vitalType=TEMPERATURE&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId",
+                        "vitals"
+                      ],
+                      "query": [
+                        {
+                          "key": "startDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "endDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter by vital type",
+                          "key": "vitalType",
+                          "value": "TEMPERATURE"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d36ad55e-ba60-4977-980e-c95ac66d3681",
+                          "key": "patientId",
+                          "value": "<string>",
+                          "description": "(Required) PointClickCare resident/patient identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns vital sign measurements for a resident within a date range."
+                  },
+                  "response": [
+                    {
+                      "id": "0d0a68d0-1e45-4183-a7e5-1694165a6cfd",
+                      "name": "Vital sign records",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/vitals?startDate=<date>&endDate=<date>&vitalType=TEMPERATURE&limit=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "vitals"
+                          ],
+                          "query": [
+                            {
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "endDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter by vital type",
+                              "key": "vitalType",
+                              "value": "TEMPERATURE"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "100"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"vitalId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"vitalType\": \"WEIGHT\",\n      \"recordedDatetime\": \"<dateTime>\",\n      \"systolic\": \"<integer>\",\n      \"diastolic\": \"<integer>\",\n      \"heartRate\": \"<integer>\",\n      \"temperature\": \"<double>\",\n      \"temperatureUnit\": \"C\",\n      \"weight\": \"<double>\",\n      \"weightUnit\": \"LBS\",\n      \"oxygenSaturation\": \"<double>\",\n      \"respirationRate\": \"<integer>\",\n      \"bloodGlucose\": \"<double>\",\n      \"bloodGlucoseUnit\": \"MMOL_L\",\n      \"recordedBy\": \"<string>\"\n    },\n    {\n      \"vitalId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"vitalType\": \"BLOOD_GLUCOSE\",\n      \"recordedDatetime\": \"<dateTime>\",\n      \"systolic\": \"<integer>\",\n      \"diastolic\": \"<integer>\",\n      \"heartRate\": \"<integer>\",\n      \"temperature\": \"<double>\",\n      \"temperatureUnit\": \"F\",\n      \"weight\": \"<double>\",\n      \"weightUnit\": \"LBS\",\n      \"oxygenSaturation\": \"<double>\",\n      \"respirationRate\": \"<integer>\",\n      \"bloodGlucose\": \"<double>\",\n      \"bloodGlucoseUnit\": \"MG_DL\",\n      \"recordedBy\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:38:52.000Z",
+                      "updatedAt": "2026-07-28T02:38:52.000Z",
+                      "uid": "35240-0d0a68d0-1e45-4183-a7e5-1694165a6cfd"
+                    },
+                    {
+                      "id": "5baa34bb-c7b3-4f20-af94-cff084a54dec",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/vitals?startDate=<date>&endDate=<date>&vitalType=TEMPERATURE&limit=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "vitals"
+                          ],
+                          "query": [
+                            {
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "endDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Filter by vital type",
+                              "key": "vitalType",
+                              "value": "TEMPERATURE"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "100"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:38:52.000Z",
+                      "updatedAt": "2026-07-28T02:38:52.000Z",
+                      "uid": "35240-5baa34bb-c7b3-4f20-af94-cff084a54dec"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:38:52.000Z",
+                  "updatedAt": "2026-07-28T02:38:52.000Z",
+                  "uid": "35240-53df26b6-e99e-4130-abc6-35171fe117fe"
+                }
+              ],
+              "id": "46fbad9c-c8f3-41d5-aa1c-021cd85b9208",
+              "createdAt": "2026-07-28T02:38:52.000Z",
+              "updatedAt": "2026-07-28T02:38:52.000Z",
+              "uid": "35240-46fbad9c-c8f3-41d5-aa1c-021cd85b9208"
+            }
+          ],
+          "id": "4cee827e-a3da-4dfe-b257-3e2a4b969ae4",
+          "createdAt": "2026-07-28T02:38:52.000Z",
+          "updatedAt": "2026-07-28T02:38:52.000Z",
+          "uid": "35240-4cee827e-a3da-4dfe-b257-3e2a4b969ae4"
+        }
+      ],
+      "id": "0d68a9e3-29b2-484d-81ee-adf0f0e5916d",
+      "createdAt": "2026-07-28T02:38:52.000Z",
+      "updatedAt": "2026-07-28T02:38:52.000Z",
+      "uid": "35240-0d68a9e3-29b2-484d-81ee-adf0f0e5916d"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient.read clinical.read facility.read",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.pointclickcare.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.pointclickcare.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pointclickcare.com/v2"
+    }
+  ]
+}

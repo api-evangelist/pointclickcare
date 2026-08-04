@@ -1,0 +1,443 @@
+{
+  "info": {
+    "_postman_id": "bbb4bc39-1288-4083-a5d9-c0a7a837610b",
+    "name": "PointClickCare Long-Term Care EHR Assessments Medications API",
+    "description": "PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.\n\nContact Support:\n Name: PointClickCare Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:38:50.000Z",
+    "updatedAt": "2026-07-28T02:38:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bbb4bc39-1288-4083-a5d9-c0a7a837610b"
+  },
+  "item": [
+    {
+      "name": "patients",
+      "item": [
+        {
+          "name": "{patientId}",
+          "item": [
+            {
+              "name": "medications",
+              "item": [
+                {
+                  "name": "mar",
+                  "item": [
+                    {
+                      "name": "Get medication administration records",
+                      "id": "646e3227-e62f-40d2-ba99-29dda7c94e7d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/medications/mar?startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "medications",
+                            "mar"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "94019798-b214-4992-acca-d70dd26d4ffe",
+                              "key": "patientId",
+                              "value": "<string>",
+                              "description": "(Required) PointClickCare resident/patient identifier"
+                            }
+                          ]
+                        },
+                        "description": "Returns medication administration records (MAR) documenting when medications were given."
+                      },
+                      "response": [
+                        {
+                          "id": "0a7720f4-0e0b-40e8-921f-b3587182d00d",
+                          "name": "MAR records",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/patients/:patientId/medications/mar?startDate=<date>&endDate=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "patients",
+                                ":patientId",
+                                "medications",
+                                "mar"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "startDate",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "endDate",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "patientId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"marId\": \"<string>\",\n      \"orderId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"scheduledDatetime\": \"<dateTime>\",\n      \"administeredDatetime\": \"<dateTime>\",\n      \"status\": \"GIVEN\",\n      \"doseAdministered\": \"<string>\",\n      \"notGivenReason\": \"<string>\",\n      \"administeredBy\": \"<string>\",\n      \"notes\": \"<string>\"\n    },\n    {\n      \"marId\": \"<string>\",\n      \"orderId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"scheduledDatetime\": \"<dateTime>\",\n      \"administeredDatetime\": \"<dateTime>\",\n      \"status\": \"NOT_GIVEN\",\n      \"doseAdministered\": \"<string>\",\n      \"notGivenReason\": \"<string>\",\n      \"administeredBy\": \"<string>\",\n      \"notes\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:38:51.000Z",
+                          "updatedAt": "2026-07-28T02:38:51.000Z",
+                          "uid": "35240-0a7720f4-0e0b-40e8-921f-b3587182d00d"
+                        },
+                        {
+                          "id": "1cef3edf-e6b9-4f76-864f-1d1b456af2bd",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/patients/:patientId/medications/mar?startDate=<date>&endDate=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "patients",
+                                ":patientId",
+                                "medications",
+                                "mar"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "startDate",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "endDate",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "patientId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:38:51.000Z",
+                          "updatedAt": "2026-07-28T02:38:51.000Z",
+                          "uid": "35240-1cef3edf-e6b9-4f76-864f-1d1b456af2bd"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:38:51.000Z",
+                      "updatedAt": "2026-07-28T02:38:51.000Z",
+                      "uid": "35240-646e3227-e62f-40d2-ba99-29dda7c94e7d"
+                    }
+                  ],
+                  "id": "62f1f80c-f173-4c0a-8ffb-1c2ce494a9bb",
+                  "createdAt": "2026-07-28T02:38:51.000Z",
+                  "updatedAt": "2026-07-28T02:38:51.000Z",
+                  "uid": "35240-62f1f80c-f173-4c0a-8ffb-1c2ce494a9bb"
+                },
+                {
+                  "name": "Get patient medication orders",
+                  "id": "68237075-9678-469e-91f1-8b87355de363",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/patients/:patientId/medications?status=DISCONTINUED&startDate=<date>&endDate=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "patients",
+                        ":patientId",
+                        "medications"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by order status",
+                          "key": "status",
+                          "value": "DISCONTINUED"
+                        },
+                        {
+                          "key": "startDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "endDate",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "53f4fca5-2da5-4ac2-8a8a-861abca0f147",
+                          "key": "patientId",
+                          "value": "<string>",
+                          "description": "(Required) PointClickCare resident/patient identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns active and historical medication orders for a resident."
+                  },
+                  "response": [
+                    {
+                      "id": "5eeff4dd-6c0a-4378-a925-dbb14bca81ca",
+                      "name": "Medication orders",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/medications?status=DISCONTINUED&startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "medications"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by order status",
+                              "key": "status",
+                              "value": "DISCONTINUED"
+                            },
+                            {
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"orderId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"medicationName\": \"<string>\",\n      \"genericName\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"dose\": \"<string>\",\n      \"route\": \"ORAL\",\n      \"frequency\": \"<string>\",\n      \"status\": \"COMPLETED\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"orderingPhysicianNpi\": \"<string>\",\n      \"orderDatetime\": \"<dateTime>\",\n      \"indication\": \"<string>\"\n    },\n    {\n      \"orderId\": \"<string>\",\n      \"patientId\": \"<string>\",\n      \"medicationName\": \"<string>\",\n      \"genericName\": \"<string>\",\n      \"ndc\": \"<string>\",\n      \"dose\": \"<string>\",\n      \"route\": \"IM\",\n      \"frequency\": \"<string>\",\n      \"status\": \"ON_HOLD\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"orderingPhysicianNpi\": \"<string>\",\n      \"orderDatetime\": \"<dateTime>\",\n      \"indication\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:38:51.000Z",
+                      "updatedAt": "2026-07-28T02:38:51.000Z",
+                      "uid": "35240-5eeff4dd-6c0a-4378-a925-dbb14bca81ca"
+                    },
+                    {
+                      "id": "cc7c4910-37f3-4dd1-9232-cf595a915dc5",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/patients/:patientId/medications?status=DISCONTINUED&startDate=<date>&endDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "patients",
+                            ":patientId",
+                            "medications"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by order status",
+                              "key": "status",
+                              "value": "DISCONTINUED"
+                            },
+                            {
+                              "key": "startDate",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "endDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:38:51.000Z",
+                      "updatedAt": "2026-07-28T02:38:51.000Z",
+                      "uid": "35240-cc7c4910-37f3-4dd1-9232-cf595a915dc5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:38:51.000Z",
+                  "updatedAt": "2026-07-28T02:38:51.000Z",
+                  "uid": "35240-68237075-9678-469e-91f1-8b87355de363"
+                }
+              ],
+              "id": "3b1ce653-7ddb-4562-8bfa-f1829ecc9511",
+              "createdAt": "2026-07-28T02:38:51.000Z",
+              "updatedAt": "2026-07-28T02:38:51.000Z",
+              "uid": "35240-3b1ce653-7ddb-4562-8bfa-f1829ecc9511"
+            }
+          ],
+          "id": "863a1064-9fb6-4bf7-8679-57a9b5e1683d",
+          "createdAt": "2026-07-28T02:38:51.000Z",
+          "updatedAt": "2026-07-28T02:38:51.000Z",
+          "uid": "35240-863a1064-9fb6-4bf7-8679-57a9b5e1683d"
+        }
+      ],
+      "id": "42fb0645-6311-490a-b6ea-7e46eaac6efa",
+      "createdAt": "2026-07-28T02:38:51.000Z",
+      "updatedAt": "2026-07-28T02:38:51.000Z",
+      "uid": "35240-42fb0645-6311-490a-b6ea-7e46eaac6efa"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient.read clinical.read facility.read",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.pointclickcare.com/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.pointclickcare.com/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.pointclickcare.com/v2"
+    }
+  ]
+}
