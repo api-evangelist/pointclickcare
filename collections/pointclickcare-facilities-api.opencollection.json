@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PointClickCare Long-Term Care EHR Assessments Facilities API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.pointclickcare.com/oauth2/authorize",
+      "accessTokenUrl": "https://login.pointclickcare.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Facilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List facilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pointclickcare.com/v2/facilities"
+          },
+          "docs": "Returns facilities accessible to the authenticated application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

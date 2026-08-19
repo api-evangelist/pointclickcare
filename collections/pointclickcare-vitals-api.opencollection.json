@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PointClickCare Long-Term Care EHR Assessments Vitals API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.pointclickcare.com/oauth2/authorize",
+      "accessTokenUrl": "https://login.pointclickcare.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vitals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get patient vitals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pointclickcare.com/v2/patients/:patientId/vitals",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path",
+                "description": "PointClickCare resident/patient identifier"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "vitalType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vital type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns vital sign measurements for a resident within a date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

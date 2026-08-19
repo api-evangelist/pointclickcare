@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PointClickCare Long-Term Care EHR Assessments Medications API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.pointclickcare.com/oauth2/authorize",
+      "accessTokenUrl": "https://login.pointclickcare.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Medications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get patient medication orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pointclickcare.com/v2/patients/:patientId/medications",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path",
+                "description": "PointClickCare resident/patient identifier"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns active and historical medication orders for a resident."
+        },
+        {
+          "info": {
+            "name": "Get medication administration records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pointclickcare.com/v2/patients/:patientId/medications/mar",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path",
+                "description": "PointClickCare resident/patient identifier"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns medication administration records (MAR) documenting when medications were given."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,260 @@
+{
+  "item": [
+    {
+      "id": "25d93331-a16b-4ad4-8b1b-c86cb357179a",
+      "name": "Vitals",
+      "description": {
+        "content": "Vital signs records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "366b3337-4894-4d10-be81-c5022b91a8bf",
+          "name": "Get patient vitals",
+          "request": {
+            "name": "Get patient vitals",
+            "description": {
+              "content": "Returns vital sign measurements for a resident within a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patients",
+                ":patientId",
+                "vitals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "vitalType",
+                  "value": "<string>",
+                  "description": "Filter by vital type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) PointClickCare resident/patient identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39ee75b2-a73b-425f-a93a-31dc196dbf01",
+              "name": "Vital sign records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "vitals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "vitalType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"vitalId\": \"string\",\n      \"patientId\": \"string\",\n      \"vitalType\": \"OXYGEN_SATURATION\",\n      \"recordedDatetime\": \"1969-10-31T11:08:10.527Z\",\n      \"systolic\": 4500,\n      \"diastolic\": 5560,\n      \"heartRate\": 5437,\n      \"temperature\": 599.0581437117637,\n      \"temperatureUnit\": \"C\",\n      \"weight\": 7749.283819463947,\n      \"weightUnit\": \"LBS\",\n      \"oxygenSaturation\": 9177.35244243806,\n      \"respirationRate\": 3653,\n      \"bloodGlucose\": 1617.700351623701,\n      \"bloodGlucoseUnit\": \"MMOL_L\",\n      \"recordedBy\": \"string\"\n    },\n    {\n      \"vitalId\": \"string\",\n      \"patientId\": \"string\",\n      \"vitalType\": \"HEART_RATE\",\n      \"recordedDatetime\": \"1967-07-18T23:36:47.164Z\",\n      \"systolic\": 6146,\n      \"diastolic\": 2227,\n      \"heartRate\": 4153,\n      \"temperature\": 7248.299795277922,\n      \"temperatureUnit\": \"C\",\n      \"weight\": 3158.318586810377,\n      \"weightUnit\": \"KG\",\n      \"oxygenSaturation\": 9593.253975754822,\n      \"respirationRate\": 7678,\n      \"bloodGlucose\": 8092.906556467683,\n      \"bloodGlucoseUnit\": \"MMOL_L\",\n      \"recordedBy\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00f172e3-d9b9-4fff-a27f-29bbfd48a181",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patients",
+                    ":patientId",
+                    "vitals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "vitalType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) PointClickCare resident/patient identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pointclickcare.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "patient.read clinical.read facility.read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.pointclickcare.com/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.pointclickcare.com/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "738e10bd-68dd-4a7d-9399-e36ddaf83418",
+    "name": "PointClickCare Long-Term Care EHR Assessments Vitals API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.\n\nContact Support:\n Name: PointClickCare Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
