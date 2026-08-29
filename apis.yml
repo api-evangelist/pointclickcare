@@ -7,6 +7,18 @@ description: >-
   partner EHR API and a HL7 FHIR API for clinical interoperability across the long-term and post-acute care (LTPAC)
   ecosystem.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
