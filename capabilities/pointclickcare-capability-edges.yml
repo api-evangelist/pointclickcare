@@ -11,27 +11,15 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 2
+edge_count: 1
 edges:
 - tag: Medications
   spec_file: pointclickcare-medications-api-openapi.yml
   capability_id: BC-2850.40
   capability_id_l1: BC-2850
   capability_name: Medication Administration & Reconciliation
-  confidence: 0.8
-  evidence: GET /patients/{patientId}/medications/mar getPatientMAR Get medication administration records;
-    schema 'MARRecord'
-  reason: Medication orders plus the Medication Administration Record are the bedside medication administration
-    artefacts, matching Medication Administration & Reconciliation. Slight ambiguity with order entry
-    (CPOE) for the orders endpoint.
-- tag: Assessments
-  spec_file: pointclickcare-assessments-api-openapi.yml
-  capability_id: BC-2830
-  capability_id_l1: BC-2830
-  capability_name: Clinical Documentation Management
-  confidence: 0.7
-  evidence: GET /patients/{patientId}/assessments listPatientAssessments — 'clinical assessments, care
-    plans'
-  reason: Exposes clinical assessment records from the LTPAC EHR — part of the active clinical record/documentation.
-    L1 clinical documentation; no single L2 clearly named (assessments straddle note documentation and
-    care planning).
+  confidence: 0.78
+  evidence: GET /patients/{patientId}/medications/mar "Get medication administration records"; schema
+    "MARRecord", "MedicationOrder"
+  reason: Exposes medication orders and the medication administration record for residents, which is provider-side
+    medication administration; slight ambiguity as the order surface also touches order entry.
