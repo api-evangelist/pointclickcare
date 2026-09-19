@@ -71,6 +71,8 @@ apis:
   humanURL: https://developer.pointclickcare.com/spa
   baseURL: https://api.pointclickcare.com/v2
   tags:
+  - Assessment
+  tags_raw:
   - Assessments
   properties:
   - type: OpenAPI
@@ -125,6 +127,8 @@ apis:
   humanURL: https://developer.pointclickcare.com/spa
   baseURL: https://api.pointclickcare.com/v2
   tags:
+  - Medication
+  tags_raw:
   - Medications
   properties:
   - type: OpenAPI
