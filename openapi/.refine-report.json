@@ -1,12 +1,7 @@
 {
   "provider": "pointclickcare",
   "sources": [
-    "pointclickcare-assessments-api-openapi.yml",
-    "pointclickcare-diagnoses-api-openapi.yml",
-    "pointclickcare-facilities-api-openapi.yml",
-    "pointclickcare-medications-api-openapi.yml",
-    "pointclickcare-patients-api-openapi.yml",
-    "pointclickcare-vitals-api-openapi.yml"
+    "_original/pointclickcare-ehr-openapi.yml"
   ],
   "outputs": [
     "pointclickcare-assessments-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "pointclickcare-ehr-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "pointclickcare-assessments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pointclickcare-diagnoses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pointclickcare-facilities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pointclickcare-medications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pointclickcare-patients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pointclickcare-vitals-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

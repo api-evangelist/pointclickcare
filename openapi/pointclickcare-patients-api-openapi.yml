@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: PointClickCare Long-Term Care EHR Assessments Patients API
+  title: PointClickCare Long-Term Care EHR Patients API
   description: PointClickCare provides EHR and care coordination APIs for long-term and post-acute care (LTPAC) facilities. APIs enable access to resident records, medication administration records, clinical assessments, care plans, and facility data for skilled nursing facilities (SNFs) and senior living communities.
   version: 2.0.0
   contact:
@@ -102,7 +102,81 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient permissions for this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    PatientDetail:
+      allOf:
+      - $ref: '#/components/schemas/Patient'
+      - type: object
+        properties:
+          ssn:
+            type: string
+            description: Last 4 digits only
+          primaryPhysician:
+            type: object
+            properties:
+              npi:
+                type: string
+              name:
+                type: string
+          emergencyContact:
+            type: object
+            properties:
+              name:
+                type: string
+              relationship:
+                type: string
+              phone:
+                type: string
+          allergies:
+            type: array
+            items:
+              type: string
+          advanceDirective:
+            type: string
+            enum:
+            - FULL_CODE
+            - DNR
+            - DNI
+            - COMFORT_CARE
+            - UNKNOWN
+          language:
+            type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
     Patient:
       type: object
       description: A resident/patient demographic summary
@@ -162,53 +236,6 @@ components:
         lastUpdateDatetime:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
-    PatientDetail:
-      allOf:
-      - $ref: '#/components/schemas/Patient'
-      - type: object
-        properties:
-          ssn:
-            type: string
-            description: Last 4 digits only
-          primaryPhysician:
-            type: object
-            properties:
-              npi:
-                type: string
-              name:
-                type: string
-          emergencyContact:
-            type: object
-            properties:
-              name:
-                type: string
-              relationship:
-                type: string
-              phone:
-                type: string
-          allergies:
-            type: array
-            items:
-              type: string
-          advanceDirective:
-            type: string
-            enum:
-            - FULL_CODE
-            - DNR
-            - DNI
-            - COMFORT_CARE
-            - UNKNOWN
-          language:
-            type: string
     Pagination:
       type: object
       properties:
@@ -220,33 +247,6 @@ components:
           type: integer
         hasMore:
           type: boolean
-  responses:
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Insufficient permissions for this resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    PatientId:
-      name: patientId
-      in: path
-      required: true
-      description: PointClickCare resident/patient identifier
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2
