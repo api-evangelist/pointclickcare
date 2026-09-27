@@ -57,14 +57,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    PatientId:
-      name: patientId
-      in: path
-      required: true
-      description: PointClickCare resident/patient identifier
-      schema:
-        type: string
   schemas:
     Error:
       type: object
@@ -114,6 +106,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

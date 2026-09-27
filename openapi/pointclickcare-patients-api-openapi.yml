@@ -102,15 +102,13 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    PatientId:
-      name: patientId
-      in: path
-      required: true
-      description: PointClickCare resident/patient identifier
-      schema:
-        type: string
   responses:
+    Forbidden:
+      description: Insufficient permissions for this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or token expired
       content:
@@ -123,13 +121,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Insufficient permissions for this resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalCount:
+          type: integer
+        hasMore:
+          type: boolean
     PatientDetail:
       allOf:
       - $ref: '#/components/schemas/Patient'
@@ -236,17 +239,14 @@ components:
         lastUpdateDatetime:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        totalCount:
-          type: integer
-        hasMore:
-          type: boolean
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2
