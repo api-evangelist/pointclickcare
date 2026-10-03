@@ -98,43 +98,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    MARRecord:
-      type: object
-      description: A medication administration record entry
-      properties:
-        marId:
-          type: string
-        orderId:
-          type: string
-        patientId:
-          type: string
-        scheduledDatetime:
-          type: string
-          format: date-time
-        administeredDatetime:
-          type: string
-          format: date-time
-          nullable: true
-        status:
-          type: string
-          enum:
-          - GIVEN
-          - NOT_GIVEN
-          - REFUSED
-          - HELD
-          - PRN_GIVEN
-        doseAdministered:
-          type: string
-          nullable: true
-        notGivenReason:
-          type: string
-          nullable: true
-        administeredBy:
-          type: string
-          description: Staff member NPI or ID
-        notes:
-          type: string
-          nullable: true
     Error:
       type: object
       properties:
@@ -198,6 +161,43 @@ components:
           format: date-time
         indication:
           type: string
+    MARRecord:
+      type: object
+      description: A medication administration record entry
+      properties:
+        marId:
+          type: string
+        orderId:
+          type: string
+        patientId:
+          type: string
+        scheduledDatetime:
+          type: string
+          format: date-time
+        administeredDatetime:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          enum:
+          - GIVEN
+          - NOT_GIVEN
+          - REFUSED
+          - HELD
+          - PRN_GIVEN
+        doseAdministered:
+          type: string
+          nullable: true
+        notGivenReason:
+          type: string
+          nullable: true
+        administeredBy:
+          type: string
+          description: Staff member NPI or ID
+        notes:
+          type: string
+          nullable: true
   parameters:
     PatientId:
       name: patientId
