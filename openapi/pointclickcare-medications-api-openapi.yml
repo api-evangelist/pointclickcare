@@ -97,16 +97,52 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
   schemas:
-    Error:
+    MARRecord:
       type: object
+      description: A medication administration record entry
       properties:
-        code:
+        marId:
           type: string
-        message:
+        orderId:
           type: string
-        details:
+        patientId:
           type: string
+        scheduledDatetime:
+          type: string
+          format: date-time
+        administeredDatetime:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          enum:
+          - GIVEN
+          - NOT_GIVEN
+          - REFUSED
+          - HELD
+          - PRN_GIVEN
+        doseAdministered:
+          type: string
+          nullable: true
+        notGivenReason:
+          type: string
+          nullable: true
+        administeredBy:
+          type: string
+          description: Staff member NPI or ID
+        notes:
+          type: string
+          nullable: true
     MedicationOrder:
       type: object
       description: A medication order
@@ -161,51 +197,15 @@ components:
           format: date-time
         indication:
           type: string
-    MARRecord:
+    Error:
       type: object
-      description: A medication administration record entry
       properties:
-        marId:
+        code:
           type: string
-        orderId:
+        message:
           type: string
-        patientId:
+        details:
           type: string
-        scheduledDatetime:
-          type: string
-          format: date-time
-        administeredDatetime:
-          type: string
-          format: date-time
-          nullable: true
-        status:
-          type: string
-          enum:
-          - GIVEN
-          - NOT_GIVEN
-          - REFUSED
-          - HELD
-          - PRN_GIVEN
-        doseAdministered:
-          type: string
-          nullable: true
-        notGivenReason:
-          type: string
-          nullable: true
-        administeredBy:
-          type: string
-          description: Staff member NPI or ID
-        notes:
-          type: string
-          nullable: true
-  parameters:
-    PatientId:
-      name: patientId
-      in: path
-      required: true
-      description: PointClickCare resident/patient identifier
-      schema:
-        type: string
   responses:
     NotFound:
       description: Resource not found
