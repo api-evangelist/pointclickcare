@@ -178,6 +178,12 @@ apis:
   - type: JSONLDContext
     url: json-ld/pointclickcare-context.jsonld
 common:
+  - type: Plans
+    url: plans/pointclickcare-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/pointclickcare-rate-limits.yml
+  - type: FinOps
+    url: finops/pointclickcare-finops.yml
   - type: CapabilityMap
     url: capabilities/pointclickcare-capability-edges.yml
     name: PointClickCare Business Capability Map
