@@ -16,7 +16,27 @@ edges:
     matched_domain: pointclickcare.com
     detected_by: sweep-health-networks.py
     detected: '2026-10-12'
+- partner_name: eClinicalWorks (own)
+  partner: eclinicalworks
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.eclinicalworks.com/about-us/partners/specialty-software-integration/
+  mirror_of: eclinicalworks/integrations/eclinicalworks-integration-edges.yml
+  apps:
+  - PointClickCare
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: specialty software integration
 generated: '2026-10-12'
 method: searched
 checked:
+- eclinicalworks/integrations/eclinicalworks-integration-edges.yml
 - https://www.commonwellalliance.org/wp-json/wp/v2/pages?slug=commonwell-members&_fields=id,link,content
+source:
+- eclinicalworks/integrations/eclinicalworks-integration-edges.yml

@@ -21,5 +21,18 @@
     matched_domain: pointclickcare.com
     detected_by: sweep-health-networks.py
     detected: '2026-10-12'
-  status: pending-partner-spec
+  status: not-a-workflow
+  arazzo: null
+- slug: pointclickcare-eclinicalworks-own
+  label: eClinicalWorks (own)
+  partner: eclinicalworks
+  partner_name: eClinicalWorks (own)
+  category: specialty software integration
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.eclinicalworks.com/about-us/partners/specialty-software-integration/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
   arazzo: null
