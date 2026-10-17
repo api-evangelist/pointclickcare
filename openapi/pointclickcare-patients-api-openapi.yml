@@ -102,21 +102,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    PatientId:
-      name: patientId
-      in: path
-      required: true
-      description: PointClickCare resident/patient identifier
-      schema:
-        type: string
   responses:
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Forbidden:
       description: Insufficient permissions for this resource
       content:
@@ -129,7 +115,71 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    PatientDetail:
+      allOf:
+      - $ref: '#/components/schemas/Patient'
+      - type: object
+        properties:
+          ssn:
+            type: string
+            description: Last 4 digits only
+          primaryPhysician:
+            type: object
+            properties:
+              npi:
+                type: string
+              name:
+                type: string
+          emergencyContact:
+            type: object
+            properties:
+              name:
+                type: string
+              relationship:
+                type: string
+              phone:
+                type: string
+          allergies:
+            type: array
+            items:
+              type: string
+          advanceDirective:
+            type: string
+            enum:
+            - FULL_CODE
+            - DNR
+            - DNI
+            - COMFORT_CARE
+            - UNKNOWN
+          language:
+            type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalCount:
+          type: integer
+        hasMore:
+          type: boolean
     Patient:
       type: object
       description: A resident/patient demographic summary
@@ -189,64 +239,14 @@ components:
         lastUpdateDatetime:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        totalCount:
-          type: integer
-        hasMore:
-          type: boolean
-    PatientDetail:
-      allOf:
-      - $ref: '#/components/schemas/Patient'
-      - type: object
-        properties:
-          ssn:
-            type: string
-            description: Last 4 digits only
-          primaryPhysician:
-            type: object
-            properties:
-              npi:
-                type: string
-              name:
-                type: string
-          emergencyContact:
-            type: object
-            properties:
-              name:
-                type: string
-              relationship:
-                type: string
-              phone:
-                type: string
-          allergies:
-            type: array
-            items:
-              type: string
-          advanceDirective:
-            type: string
-            enum:
-            - FULL_CODE
-            - DNR
-            - DNI
-            - COMFORT_CARE
-            - UNKNOWN
-          language:
-            type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

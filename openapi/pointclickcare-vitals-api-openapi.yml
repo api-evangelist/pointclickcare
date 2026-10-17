@@ -70,6 +70,13 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     PatientId:
       name: patientId
@@ -78,14 +85,16 @@ components:
       description: PointClickCare resident/patient identifier
       schema:
         type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
     VitalSign:
       type: object
       description: A vital sign measurement
@@ -158,15 +167,6 @@ components:
         recordedBy:
           type: string
           description: Staff member who recorded the vital
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2

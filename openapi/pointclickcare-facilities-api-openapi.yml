@@ -48,6 +48,15 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
     Facility:
       type: object
       properties:
@@ -79,15 +88,6 @@ components:
           - CCRC
           - HOME_HEALTH
           - HOSPICE
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2

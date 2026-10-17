@@ -97,14 +97,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    PatientId:
-      name: patientId
-      in: path
-      required: true
-      description: PointClickCare resident/patient identifier
-      schema:
-        type: string
   schemas:
     MARRecord:
       type: object
@@ -143,6 +135,15 @@ components:
         notes:
           type: string
           nullable: true
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
     MedicationOrder:
       type: object
       description: A medication order
@@ -197,15 +198,14 @@ components:
           format: date-time
         indication:
           type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
+  parameters:
+    PatientId:
+      name: patientId
+      in: path
+      required: true
+      description: PointClickCare resident/patient identifier
+      schema:
+        type: string
   responses:
     NotFound:
       description: Resource not found

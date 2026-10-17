@@ -58,6 +58,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
     Assessment:
       type: object
       description: A clinical assessment record
@@ -90,15 +99,6 @@ components:
           type: string
           nullable: true
           description: Risk classification if applicable
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
   parameters:
     PatientId:
       name: patientId
